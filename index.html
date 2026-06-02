@@ -460,13 +460,25 @@
   @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
   .sep { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent); max-width: 500px; margin: 0 auto; }
-  .confetti-particle { position: fixed; z-index: 9999; pointer-events: none; animation: fall linear forwards; }
-  @keyframes fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 1; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
+  
+  /* تجميل وتخفيف حركة الأوراق المتطايرة بشكل انسيابي فائق السلاسة */
+  .confetti-particle { 
+    position: fixed; 
+    z-index: 9999; 
+    pointer-events: none; 
+    top: -20px;
+    will-change: transform, opacity; /* يوجه المتصفح لاستخدام كارت الشاشة لمنع التعليق تماماً */
+    animation: smoothFall linear forwards; 
+  }
+  @keyframes smoothFall {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translateY(105vh) translateX(30px) rotate(360deg); opacity: 0; }
+  }
 </style>
 </head>
 <body>
 
-<!-- المسار المباشر لملف الصوت التابع لك على GitHub -->
 <audio id="bg-music" src="aaa.mp3" loop preload="auto"></audio>
 
 <div id="music-control" onclick="toggleMusic()">
@@ -501,7 +513,6 @@
     <div class="gate-arch"><div class="arch-ornament"></div></div>
   </div>
   
-  <!-- تم إرجاع النص المفضل لديك هنا بالكامل -->
   <div class="seal" onclick="openGate()">
     <span class="seal-text">اضغط لفتح الدعوة</span>
   </div>
@@ -731,10 +742,10 @@
           setTimeout(() => {
             canvas.style.display = 'none';
             header.textContent = "✦ بداية رحلتنا الأبدية ✦";
-            triggerNativeCelebration();
+            triggerOptimizedCelebration();
           }, 400);
         }
-      }, 1800);
+      }, 1400);
     }
 
     function scratch(e) {
@@ -747,19 +758,35 @@
       startTimer();
     }
 
-    function triggerNativeCelebration() {
-      const colors = ['#c9a84c', '#e8c97a', '#7a1c2e', '#ffffff'];
-      for (let i = 0; i < 100; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('confetti-particle');
-        const size = Math.random() * 7 + 4 + 'px';
-        particle.style.width = size; particle.style.height = size;
-        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.top = '-20px';
-        particle.style.animationDuration = Math.random() * 2 + 1.5 + 's';
-        document.body.appendChild(particle);
-        setTimeout(() => particle.remove(), 3500);
+    // تأثير احتفال خفيف جداً، ذكي وفخم بدون التسبب بأي بطء للأنظمة
+    function triggerOptimizedCelebration() {
+      const colors = ['#c9a84c', '#e8c97a', '#7a1c2e', '#f5ecd7', '#ffffff'];
+      const totalParticles = 120; // تم تحسين العدد ليعطي كثافة بصرية رائعة مع الحفاظ على الأداء
+
+      for (let i = 0; i < totalParticles; i++) {
+        // جدولة إنشاء العناصر عبر فترات زمنية متباعدة بأجزاء من الثانية لراحة المعالج
+        setTimeout(() => {
+          if (document.body.clientWidth < 10) return; // حماية إضافية
+          
+          const particle = document.createElement('div');
+          particle.classList.add('confetti-particle');
+          
+          if (Math.random() > 0.5) {
+            particle.style.borderRadius = '50%';
+          }
+          
+          const size = Math.random() * 6 + 5;
+          particle.style.width = size + 'px'; 
+          particle.style.height = (size * (Math.random() * 0.4 + 1)) + 'px';
+          particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          particle.style.left = Math.random() * 100 + 'vw';
+          
+          // حركات متناسقة وانسيابية
+          particle.style.animationDuration = Math.random() * 2 + 2 + 's';
+          
+          document.body.appendChild(particle);
+          setTimeout(() => particle.remove(), 4000);
+        }, i * 8); // هنا السر الخفي: يتم إسقاط ورقة كل 8 أجزاء من الملي ثانية بدلاً من سقوطها كلها معاً!
       }
     }
 
