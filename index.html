@@ -301,7 +301,7 @@
 
   /* ======= SECTIONS ======= */
   section {
-    padding: 80px 24px;
+    padding: 60px 24px;
     max-width: 500px;
     margin: 0 auto;
     text-align: center;
@@ -320,10 +320,66 @@
     line-height: 2;
   }
 
+  /* ======= AUTOMATIC HORIZONTAL IMAGES SLIDER ======= */
+  .photos-slider-container {
+    max-width: 440px;
+    margin: 20px auto 0 auto;
+    padding: 0 16px;
+  }
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 60%; 
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    background-color: #0a0a0a;
+  }
+  .slider-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.5);
+    pointer-events: none;
+  }
+  .slide-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    will-change: opacity;
+  }
+  .slide-img.active {
+    opacity: 1;
+  }
+
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: rgba(201,168,76,0.25);
+    transition: all 0.3s ease;
+  }
+  .dot.active {
+    background-color: var(--gold-light);
+    transform: scale(1.2);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
   /* ======= COUNTDOWN ======= */
   .countdown-section {
     background: linear-gradient(180deg, var(--dark) 0%, var(--dark2) 100%);
-    padding: 80px 24px;
+    padding: 30px 24px 80px 24px;
     text-align: center;
   }
 
@@ -332,7 +388,7 @@
     font-size: clamp(1.4rem, 5vw, 2.2rem);
     color: var(--gold-light);
     font-style: italic;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
   }
 
   .countdown-grid {
@@ -461,13 +517,12 @@
 
   .sep { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent); max-width: 500px; margin: 0 auto; }
   
-  /* تجميل وتخفيف حركة الأوراق المتطايرة بشكل انسيابي فائق السلاسة */
   .confetti-particle { 
     position: fixed; 
     z-index: 9999; 
     pointer-events: none; 
     top: -20px;
-    will-change: transform, opacity; /* يوجه المتصفح لاستخدام كارت الشاشة لمنع التعليق تماماً */
+    will-change: transform, opacity;
     animation: smoothFall linear forwards; 
   }
   @keyframes smoothFall {
@@ -567,6 +622,23 @@
 
   <div class="sep"></div>
 
+  <div class="photos-slider-container">
+    <div class="slider-wrapper">
+      <img src="as1.jpeg" class="slide-img active">
+      <img src="as2.jpeg" class="slide-img">
+      <img src="as3.jpeg" class="slide-img">
+      <img src="as4.jpeg" class="slide-img">
+      <img src="as5.jpeg" class="slide-img">
+    </div>
+    <div class="slider-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
   <div class="countdown-section">
     <p class="countdown-label" id="countdown-title">العدّ التنازلي حتى الفرح</p>
     <div class="countdown-grid" id="countdown-board">
@@ -651,6 +723,7 @@
 
     setTimeout(() => gate.classList.add('gone'), 1500);
     initScratch();
+    startImagesSlider(); 
   }
 
   function toggleMusic() {
@@ -691,6 +764,24 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  function startImagesSlider() {
+    const slides = document.querySelectorAll('.slide-img');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+
+    if(slides.length === 0) return;
+
+    setInterval(() => {
+      slides[currentIndex].classList.remove('active');
+      dots[currentIndex].classList.remove('active');
+      
+      currentIndex = (currentIndex + 1) % slides.length;
+      
+      slides[currentIndex].classList.add('active');
+      dots[currentIndex].classList.add('active');
+    }, 3000);
+  }
 
   function initScratch() {
     const canvas = document.getElementById('scratch-canvas');
@@ -758,15 +849,13 @@
       startTimer();
     }
 
-    // تأثير احتفال خفيف جداً، ذكي وفخم بدون التسبب بأي بطء للأنظمة
     function triggerOptimizedCelebration() {
       const colors = ['#c9a84c', '#e8c97a', '#7a1c2e', '#f5ecd7', '#ffffff'];
-      const totalParticles = 120; // تم تحسين العدد ليعطي كثافة بصرية رائعة مع الحفاظ على الأداء
+      const totalParticles = 120;
 
       for (let i = 0; i < totalParticles; i++) {
-        // جدولة إنشاء العناصر عبر فترات زمنية متباعدة بأجزاء من الثانية لراحة المعالج
         setTimeout(() => {
-          if (document.body.clientWidth < 10) return; // حماية إضافية
+          if (document.body.clientWidth < 10) return;
           
           const particle = document.createElement('div');
           particle.classList.add('confetti-particle');
@@ -781,12 +870,11 @@
           particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
           particle.style.left = Math.random() * 100 + 'vw';
           
-          // حركات متناسقة وانسيابية
           particle.style.animationDuration = Math.random() * 2 + 2 + 's';
           
           document.body.appendChild(particle);
           setTimeout(() => particle.remove(), 4000);
-        }, i * 8); // هنا السر الخفي: يتم إسقاط ورقة كل 8 أجزاء من الملي ثانية بدلاً من سقوطها كلها معاً!
+        }, i * 8);
       }
     }
 
