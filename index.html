@@ -14,7 +14,7 @@
     --gold: #b38f36;
     --gold-light: #8b6914;
     --gold-dark: #684f10;
-    --crimson: #8c1d33; /* اللون العنابي الفخم للأسماء في الوضع الفاتح */
+    --crimson: #8c1d33; 
     --bg-main: #fbf8f0;
     --bg-card: linear-gradient(160deg, #ffffff, #f3edd8);
     --bg-gate: linear-gradient(135deg, #ffffff 0%, #f3edd8 50%, #ffffff 100%);
@@ -22,7 +22,12 @@
     --text-muted: #665541;
     --border-color: rgba(179,143,54,0.25);
     --shadow: rgba(51,41,30,0.08);
-    --shadow-scratch: 0 15px 35px rgba(140, 29, 51, 0.15); /* ظل دافئ يناسب المظهر الفاتح */
+    --shadow-scratch: 0 20px 40px rgba(140, 29, 51, 0.12);
+    
+    /* خلفية مخملية وردية عاجية دافئة تبرز شكل القلب تماماً */
+    --heart-reveal-bg: linear-gradient(145deg, #fffcf7, #f5e6e8, #ebd0d4);
+    --heart-border: #b38f36;
+    --heart-text: #8c1d33;
   }
 
   /* ======= الـوضـع الـدّاكِـن الـفـاخـر ======= */
@@ -30,7 +35,7 @@
     --gold: #d4af37;
     --gold-light: #f3edd8;
     --gold-dark: #a37f26;
-    --crimson: #d4af37; /* يتحول النص الرئيسي إلى ذهبي متوهج في الوضع الداكن لتباين مذهل */
+    --crimson: #d4af37; 
     --bg-main: #120e0a;
     --bg-card: linear-gradient(160deg, #1c1610, #0d0a07);
     --bg-gate: linear-gradient(135deg, #1c1610 0%, #0d0a07 50%, #1c1610 100%);
@@ -38,7 +43,12 @@
     --text-muted: #baa58b;
     --border-color: rgba(179,143,54,0.35);
     --shadow: rgba(0,0,0,0.5);
-    --shadow-scratch: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.1); /* ظل عميق مع توهج ذهبي خافت */
+    --shadow-scratch: 0 20px 45px rgba(0, 0, 0, 0.6);
+    
+    /* خلفية عنابية خمرية عميقة وساحرة تمنح تباين فخم جداً */
+    --heart-reveal-bg: linear-gradient(145deg, #2a0810, #42101a, #1a0308);
+    --heart-border: #d4af37;
+    --heart-text: #f5ebd7;
   }
 
   html { scroll-behavior: smooth; }
@@ -377,7 +387,7 @@
     transition: color 0.5s;
   }
   .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 380px; margin: 0 auto; }
-  
+   
   .countdown-box {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -406,21 +416,23 @@
   .detail-label { font-size: 0.75rem; color: var(--text-muted); transition: color 0.5s; }
   .detail-value { font-family: 'Amiri', serif; font-weight: bold; font-size: clamp(1.1rem, 4vw, 1.5rem); color: var(--text-main); transition: color 0.5s; }
 
-  /* ======= SCRATCH TO REVEAL (تنسيق المظهر والظلال المجسمة) ======= */
+  /* ======= SCRATCH TO REVEAL ======= */
   .scratch-section { padding: 80px 24px; text-align: center; background: var(--bg-main); transition: background 0.5s; }
   .scratch-title { font-family: 'Scheherazade New', serif; font-size: clamp(1.4rem, 5vw, 2rem); color: var(--crimson); margin-bottom: 30px; transition: color 0.5s; }
-  
+   
   .scratch-canvas-wrap {
     position: relative;
     width: 320px;
     height: 300px;
     margin: 0 auto;
-    box-shadow: var(--shadow-scratch); /* تفعيل الظل المتناسق والديناميكي */
-    border-radius: 150px 150px 0 0; /* تحسين الحواف المتناغمة مع شكل القلب */
-    transition: box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-scratch); 
+    border-radius: 150px 150px 0 0; 
+    transition: box-shadow 0.5s ease;
     clip-path: url(#heart-clip); 
     -webkit-clip-path: url(#heart-clip);
   }
+  
+  /* الحاوية الأساسية للقلب - تم إضافة حدود واضحة وتأثير ظل داخلي فخم يمنحه بروزاً هائلاً */
   #scratch-reveal {
     position: absolute;
     inset: 0;
@@ -430,14 +442,38 @@
     align-items: center;
     justify-content: center;
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.1rem, 4vw, 1.35rem); 
+    font-size: clamp(1.2rem, 4.5vw, 1.45rem); 
     color: var(--text-main);
     line-height: 1.8;
     z-index: 1;
     padding-bottom: 25px; 
-    border: 1px solid var(--border-color);
-    transition: background 0.5s, color 0.5s, border 0.5s;
+    border: 2px solid var(--heart-border); /* برواز ذهبي صريح ومصقول حول القلب */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.15); /* ظل داخلي ليعطي عمق للقلب */
+    transition: background 0.8s ease, color 0.5s, border-color 0.5s;
   }
+
+  /* الاستايل الجديد للقلب بعد المسح - مظهر مخملي ناعم وتباين ممتاز جداً */
+  #scratch-reveal.revealed {
+    background: var(--heart-reveal-bg) !important;
+    color: var(--heart-text) !important;
+  }
+
+  #scratch-reveal.revealed p {
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05); /* إضفاء لمسة جمالية مقروءة على النص */
+  }
+
+  /* تأثير النبض البصري الأنيق لقلوب الزينة الداخلية */
+  #scratch-reveal.revealed .revealed-heart {
+    fill: var(--heart-border) !important;
+    animation: heartPulseGlow 1.8s infinite alternate ease-in-out;
+  }
+
+  @keyframes heartPulseGlow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 1px rgba(179,143,54,0.1)); }
+    100% { transform: scale(1.15); filter: drop-shadow(0 0 6px var(--gold)); }
+  }
+
   #scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; cursor: crosshair; touch-action: none; }
 
   footer { padding: 60px 24px 40px; text-align: center; border-top: 1px solid var(--border-color); transition: border 0.5s; }
@@ -620,11 +656,11 @@
     <p class="scratch-title" id="scratch-header">✦ امسح للكشف ✦</p>
     <div class="scratch-canvas-wrap">
       <div id="scratch-reveal">
-        <svg style="width:24px; height:24px; fill:var(--gold); margin-bottom:8px;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
+        <svg class="revealed-heart" style="width:24px; height:24px; fill:var(--gold); margin-bottom:8px; transition: all 0.3s;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
         <p>بارك الله لكما</p>
         <p>وبارك عليكما</p>
         <p>وجمع بينكما في خير</p>
-        <svg style="width:24px; height:24px; fill:var(--gold); margin-top:8px;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
+        <svg class="revealed-heart" style="width:24px; height:24px; fill:var(--gold); margin-top:8px; transition: all 0.3s;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
       </div>
       <canvas id="scratch-canvas"></canvas>
     </div>
@@ -742,7 +778,6 @@
 
   let globalPaintingState = { isCelebrated: false, timerStarted: false };
 
-  // إعادة هندسة ألوان فرشاة الحك بدقة للحصول على مظهر ميتاليك متناسق مع النمطين
   function redrawScratchCanvas() {
     const canvas = document.getElementById('scratch-canvas');
     if (!canvas) return;
@@ -754,21 +789,19 @@
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
     if (isDark) {
-      // مزيج برونزي ذهبي غامق ساحر متناسق مع الخلفية الداكنة
       grad.addColorStop(0, '#8a6914'); 
       grad.addColorStop(0.5, '#2d2216'); 
       grad.addColorStop(1, '#4a3b2c');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#f5ebd7'; // لون نص الحك الداكن
+      ctx.fillStyle = '#f5ebd7'; 
     } else {
-      // مزيج ذهبي مشرق مع عاجي فاخر متناسق مع الخلفية الفاتحة
       grad.addColorStop(0, '#d4af37'); 
       grad.addColorStop(0.5, '#fbf8f0'); 
       grad.addColorStop(1, '#b38f36');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#8c1d33'; // لون نص الحك الفاتح (عنابي فخم)
+      ctx.fillStyle = '#8c1d33'; 
     }
 
     ctx.font = 'bold 17px Amiri, serif';
@@ -783,6 +816,7 @@
     const canvas = document.getElementById('scratch-canvas');
     const wrap = canvas.parentElement;
     const header = document.getElementById('scratch-header');
+    const scratchReveal = document.getElementById('scratch-reveal');
 
     canvas.width = wrap.offsetWidth;
     canvas.height = wrap.offsetHeight;
@@ -812,6 +846,10 @@
           canvas.style.transition = 'opacity 0.4s ease-out';
           canvas.style.opacity = '0';
            
+          if (scratchReveal) {
+            scratchReveal.classList.add('revealed');
+          }
+
           setTimeout(() => {
             canvas.style.display = 'none';
             header.textContent = "✦ بداية رحلتنا الأبدية ✦";
@@ -826,7 +864,7 @@
       e.preventDefault();
       const { x, y } = getPos(e);
       ctx.beginPath();
-      ctx.arc(x, y, 32, 0, Math.PI * 2); // تكبير رقعة المسح قليلاً لتسهيل الاستخدام
+      ctx.arc(x, y, 32, 0, Math.PI * 2); 
       ctx.fill();
       startTimer();
     }
