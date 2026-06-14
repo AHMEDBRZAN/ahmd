@@ -448,7 +448,7 @@
 
   .card-icon-svg { width: 28px; height: 28px; fill: var(--gold-light); }
   .detail-label { font-size: 0.75rem; letter-spacing: 0.15em; color: var(--gold); }
-  .detail-value { font-family: 'Scheherazade New', serif; font-size: clamp(1.1rem, 4vw, 1.5rem); color: var(--cream); }
+  .detail-value { font-family: 'Amiri', serif; font-weight: bold; font-size: clamp(1.1rem, 4vw, 1.5rem); color: var(--cream); }
 
   /* ======= SCRATCH TO REVEAL HEART ======= */
   .scratch-section {
@@ -516,7 +516,7 @@
   @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
   .sep { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent); max-width: 500px; margin: 0 auto; }
-  
+   
   .confetti-particle { 
     position: fixed; 
     z-index: 9999; 
@@ -567,7 +567,7 @@
     <div class="gate-line"></div>
     <div class="gate-arch"><div class="arch-ornament"></div></div>
   </div>
-  
+   
   <div class="seal" onclick="openGate()">
     <span class="seal-text">اضغط لفتح الدعوة</span>
   </div>
@@ -696,7 +696,7 @@
     <p class="footer-dua">اللهم بارك لهما وبارك عليهما<br>واجمع شملهما بالسعادة والهناء</p>
     <svg class="footer-heart-svg" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
     <div class="divider"><div class="divider-line"></div><div class="divider-gem">❖</div><div class="divider-line rev"></div></div>
-    <p style="font-size: 0.75rem; color: rgba(245,236,215,0.3); margin-top: 20px; letter-spacing: 0.1em;">أحمد برزان — ١٤٤٦ هـ</p>
+    <p style="font-size: 0.75rem; color: rgba(245,236,215,0.3); margin-top: 20px; letter-spacing: 0.1em;">أحمد برزان — ٢٠٢٦ م</p>
   </footer>
 
 </div>
@@ -710,7 +710,7 @@
   function openGate() {
     const gate = document.getElementById('gate-screen');
     const main = document.getElementById('main');
-    
+     
     music.play().then(() => {
       musicControl.style.display = 'flex';
     }).catch(err => {
@@ -738,9 +738,10 @@
     }
   }
 
-  const weddingDate = new Date("August 20, 2026 20:00:00"); 
+  // التعديل جرى هنا: تم تحويل القراءة التلقائية للغة العربية الطبيعية (الميلادية)
+  const weddingDate = new Date("December 4, 2026 20:00:00"); 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  document.getElementById('event-date').textContent = weddingDate.toLocaleDateString('ar-SA', options);
+  document.getElementById('event-date').textContent = weddingDate.toLocaleDateString('ar-EG', options);
 
   function updateCountdown() {
     const now = new Date();
@@ -775,9 +776,9 @@
     setInterval(() => {
       slides[currentIndex].classList.remove('active');
       dots[currentIndex].classList.remove('active');
-      
+       
       currentIndex = (currentIndex + 1) % slides.length;
-      
+       
       slides[currentIndex].classList.add('active');
       dots[currentIndex].classList.add('active');
     }, 3000);
@@ -829,7 +830,7 @@
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           canvas.style.transition = 'opacity 0.4s ease-out';
           canvas.style.opacity = '0';
-          
+           
           setTimeout(() => {
             canvas.style.display = 'none';
             header.textContent = "✦ بداية رحلتنا الأبدية ✦";
@@ -856,22 +857,22 @@
       for (let i = 0; i < totalParticles; i++) {
         setTimeout(() => {
           if (document.body.clientWidth < 10) return;
-          
+           
           const particle = document.createElement('div');
           particle.classList.add('confetti-particle');
-          
+           
           if (Math.random() > 0.5) {
             particle.style.borderRadius = '50%';
           }
-          
+           
           const size = Math.random() * 6 + 5;
           particle.style.width = size + 'px'; 
           particle.style.height = (size * (Math.random() * 0.4 + 1)) + 'px';
           particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
           particle.style.left = Math.random() * 100 + 'vw';
-          
+           
           particle.style.animationDuration = Math.random() * 2 + 2 + 's';
-          
+           
           document.body.appendChild(particle);
           setTimeout(() => particle.remove(), 4000);
         }, i * 8);
