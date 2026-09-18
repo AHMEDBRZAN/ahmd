@@ -9,6 +9,11 @@
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* ======= منع النسخ والسحب ======= */
+  html { -webkit-user-select: none; user-select: none; }
+  body { -webkit-touch-callout: none; }
+  img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+
   /* ======= الوضع الأحمر المتدرج (الافتراضي) ======= */
   :root {
     --gold: #ffd6dc;
@@ -18,15 +23,26 @@
 
     --bg-solid: #a8283a;
     --bg-main: linear-gradient(160deg, #d05a6e 0%, #b8404f 22%, #9c2436 50%, #c14a5e 78%, #8f1f2e 100%);
-    --bg-card: linear-gradient(160deg, rgba(255,255,255,0.24), rgba(255,255,255,0.08));
-    --bg-gate: linear-gradient(135deg, #c14a5e 0%, #9c2436 50%, #c14a5e 100%);
+
+    /* ألوان البطاقات (طبقات صالحة للتدرج المزدوج) */
+    --card-bg-1: rgba(255,255,255,0.22);
+    --card-bg-2: rgba(255,255,255,0.07);
+    --bg-card: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2));
+
+    --gate-1: #c14a5e; --gate-2: #9c2436; --gate-3: #c14a5e;
+    --bg-gate: linear-gradient(135deg, var(--gate-1) 0%, var(--gate-2) 50%, var(--gate-3) 100%);
+
+    /* تدرج الحدود المتلاشي (حلقة فقط) */
+    --border-grad: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.06) 38%, rgba(255,255,255,0.06) 62%, rgba(255,255,255,0.75));
+    --border-color: rgba(255,255,255,0.38);
 
     --text-main: #ffffff;
     --text-muted: #ffe4e8;
-    --text-strong: #ffffff;
-    --border-color: rgba(255,255,255,0.38);
-    --border-soft: linear-gradient(135deg, rgba(255,255,255,0.5), transparent 40%, transparent 60%, rgba(255,255,255,0.5));
+
+    /* ظلال عائمة متعددة الطبقات */
     --shadow: rgba(90,15,28,0.35);
+    --card-shadow: 0 1px 2px rgba(50,6,14,0.22), 0 6px 14px rgba(50,6,14,0.24), 0 18px 36px rgba(50,6,14,0.26), 0 42px 84px rgba(50,6,14,0.22);
+    --card-shadow-hover: 0 2px 4px rgba(50,6,14,0.24), 0 10px 22px rgba(50,6,14,0.28), 0 28px 56px rgba(50,6,14,0.32), 0 60px 110px rgba(50,6,14,0.26);
     --shadow-scratch: 0 20px 45px rgba(120, 20, 35, 0.45);
 
     --heart-reveal-bg: linear-gradient(145deg, #f2a3b3, #d96b80, #e8849a);
@@ -34,11 +50,14 @@
     --heart-text: #6b1020;
 
     --rose: #ffd6dc;
-    --rose-light: rgba(255,255,255,0.25);
     --peach: #c14a5e;
 
-    --names-color: #f7f2ec;
-    --names-shadow: 0 0 30px rgba(255,255,255,0.45), 0 2px 8px rgba(90,15,28,0.5);
+    /* لمعان الرقائق المعدنية على الأسماء */
+    --name-sheen: linear-gradient(115deg, #f7f2ec 0%, #f7f2ec 34%, #ffffff 46%, #ffd9de 54%, #f7f2ec 66%, #f7f2ec 100%);
+    --names-drop: drop-shadow(0 2px 10px rgba(255,255,255,0.35)) drop-shadow(0 4px 18px rgba(90,15,28,0.45));
+
+    --vignette: radial-gradient(120% 85% at 50% 8%, transparent 45%, rgba(40,5,12,0.24) 100%);
+    --grain-opacity: 0.06;
 
     --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(140,25,42,0.55), rgba(95,16,28,0.92));
   }
@@ -52,16 +71,23 @@
 
     --bg-solid: #c97b94;
     --bg-main: linear-gradient(160deg, #e8b4bc 0%, #d98ba0 22%, #c97b94 50%, #b8697f 78%, #a65672 100%);
-    --bg-card: linear-gradient(160deg, rgba(255,255,255,0.45), rgba(255,255,255,0.22));
-    --bg-gate: linear-gradient(135deg, #d98ba0 0%, #b8697f 50%, #d98ba0 100%);
 
-    /* كتابة داكنة واضحة */
+    --card-bg-1: rgba(255,255,255,0.5);
+    --card-bg-2: rgba(255,255,255,0.24);
+    --bg-card: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2));
+
+    --gate-1: #d98ba0; --gate-2: #b8697f; --gate-3: #d98ba0;
+    --bg-gate: linear-gradient(135deg, var(--gate-1) 0%, var(--gate-2) 50%, var(--gate-3) 100%);
+
+    --border-grad: linear-gradient(135deg, rgba(139,53,83,0.7), rgba(139,53,83,0.08) 38%, rgba(139,53,83,0.08) 62%, rgba(139,53,83,0.7));
+    --border-color: rgba(139,53,83,0.35);
+
     --text-main: #2a1520;
     --text-muted: #4a2535;
-    --text-strong: #1a0a10;
-    --border-color: rgba(139,53,83,0.35);
-    --border-soft: linear-gradient(135deg, rgba(139,53,83,0.5), transparent 40%, transparent 60%, rgba(139,53,83,0.5));
+
     --shadow: rgba(110,42,66,0.25);
+    --card-shadow: 0 1px 2px rgba(90,25,50,0.16), 0 6px 14px rgba(90,25,50,0.18), 0 18px 36px rgba(90,25,50,0.2), 0 42px 84px rgba(90,25,50,0.16);
+    --card-shadow-hover: 0 2px 4px rgba(90,25,50,0.18), 0 10px 22px rgba(90,25,50,0.22), 0 28px 56px rgba(90,25,50,0.26), 0 60px 110px rgba(90,25,50,0.2);
     --shadow-scratch: 0 20px 40px rgba(139, 53, 83, 0.35);
 
     --heart-reveal-bg: linear-gradient(145deg, #f0d4dc, #e8b4bc, #d98ba0);
@@ -69,12 +95,13 @@
     --heart-text: #4a1528;
 
     --rose: #e8b4bc;
-    --rose-light: #f0d4dc;
     --peach: #d98ba0;
 
-    /* أسماء العرسان تبقى كما هي */
-    --names-color: #3d1a28;
-    --names-shadow: 0 0 25px rgba(255,255,255,0.5), 0 2px 10px rgba(74,21,40,0.3);
+    --name-sheen: linear-gradient(115deg, #3d1a28 0%, #3d1a28 34%, #8b3553 46%, #c97b94 54%, #3d1a28 66%, #3d1a28 100%);
+    --names-drop: drop-shadow(0 2px 8px rgba(255,255,255,0.55)) drop-shadow(0 3px 12px rgba(74,21,40,0.28));
+
+    --vignette: radial-gradient(120% 85% at 50% 8%, transparent 45%, rgba(74,21,40,0.16) 100%);
+    --grain-opacity: 0.05;
 
     --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(201,123,148,0.6), rgba(166,69,99,0.95));
   }
@@ -88,6 +115,18 @@
     font-family: 'Amiri', serif;
     overflow-x: hidden;
     transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ======= ملمس حبيبات الورق الفاخر (Grain) ======= */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1500;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   /* ======= CONTROLS ======= */
@@ -104,22 +143,20 @@
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: var(--bg-card);
     border: 1px solid transparent;
-    background: 
-      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-      var(--border-soft) border-box;
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                var(--border-grad) border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 15px var(--shadow);
-    backdrop-filter: blur(6px);
-    transition: transform 0.3s, box-shadow 0.3s, background 0.5s;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s, box-shadow 0.3s;
   }
   .control-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 16px rgba(255,255,255,0.45);
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
   }
   .control-btn svg {
     width: 22px;
@@ -175,17 +212,20 @@
   .gate-left .gate-arch { justify-content: flex-end; padding-right: 30px; }
   .gate-right .gate-arch { justify-content: flex-start; padding-left: 30px; }
 
+  /* قوس بزخرفة حلقة متلاشية فقط (بدون تعبئة داخلية) */
   .arch-ornament {
     width: 60px;
     height: 200px;
-    border: 1px solid transparent;
-    background: 
-      linear-gradient(var(--bg-gate), var(--bg-gate)) padding-box,
-      var(--border-soft) border-box;
+    padding: 1px;
+    background: var(--border-grad);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
     position: relative;
   }
-  .gate-left .arch-ornament { border-radius: 100px 0 0 100px; border-right: none; }
-  .gate-right .arch-ornament { border-radius: 0 100px 100px 0; border-left: none; }
+  .gate-left .arch-ornament { border-radius: 100px 0 0 100px; }
+  .gate-right .arch-ornament { border-radius: 0 100px 100px 0; }
 
   .gate-line {
     position: absolute;
@@ -200,28 +240,35 @@
   .seal {
     position: relative;
     z-index: 10;
-    width: 130px;
-    height: 130px;
+    width: 132px;
+    height: 132px;
     border-radius: 50%;
-    background: var(--bg-card);
     border: 2px solid transparent;
-    background: 
-      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-      linear-gradient(135deg, var(--gold-light), transparent 30%, transparent 70%, var(--gold-light)) border-box;
-    box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(255,255,255,0.15);
-    backdrop-filter: blur(8px);
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                linear-gradient(135deg, var(--gold-light), transparent 30%, transparent 70%, var(--gold-light)) border-box;
+    box-shadow: var(--card-shadow), 0 0 0 6px rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: box-shadow 0.3s, transform 0.3s, background 0.5s;
+    transition: box-shadow 0.3s, transform 0.3s;
     animation: sealPulse 3s infinite;
     padding: 10px;
   }
+  .seal::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    opacity: 0.7;
+    pointer-events: none;
+  }
   @keyframes sealPulse {
-    0%, 100% { box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(255,255,255,0.15); }
-    50% { box-shadow: 0 6px 32px var(--shadow), 0 0 0 12px rgba(255,255,255,0.07); }
+    0%, 100% { box-shadow: var(--card-shadow), 0 0 0 6px rgba(255,255,255,0.12); }
+    50% { box-shadow: var(--card-shadow-hover), 0 0 0 12px rgba(255,255,255,0.06); }
   }
 
   .seal-text {
@@ -262,15 +309,23 @@
       repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.04) 60px, rgba(255,255,255,0.04) 1px);
   }
 
+  /* فينييت سينمائي ناعم */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: var(--vignette);
+  }
+
+  /* الإطار: حلقة حدود متلاشية فقط — الداخل شفاف تماماً ليظهر تدرج الخلفية */
   .frame {
     position: absolute;
     inset: 20px;
-    border: 1px solid transparent;
-    background: 
-      linear-gradient(transparent, transparent) padding-box,
-      var(--border-soft) border-box;
+    border: 1px solid;
+    border-image: var(--border-grad) 1;
+    background: none;
     pointer-events: none;
-    transition: border 0.5s ease;
   }
   .frame::before, .frame::after {
     content: '❖';
@@ -284,11 +339,12 @@
 
   .corner {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-color: var(--gold-light);
     border-style: solid;
-    opacity: 0.55;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
     transition: border-color 0.5s;
   }
   .corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
@@ -296,7 +352,46 @@
   .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
   .corner-br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
 
+  /* ======= شعار المونوغرام (لمسة فاخرة) ======= */
+  .monogram {
+    position: relative;
+    z-index: 2;
+    width: 98px;
+    height: 98px;
+    border-radius: 50%;
+    margin: 0 auto 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid transparent;
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                var(--border-grad) border-box;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(8px);
+    font-family: 'Scheherazade New', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    animation: monoFloat 5s ease-in-out infinite;
+  }
+  .monogram::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    opacity: 0.65;
+  }
+  .monogram svg { width: 15px; height: 15px; fill: var(--gold-light); }
+  @keyframes monoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
   .bismillah {
+    position: relative;
+    z-index: 2;
     font-family: 'Scheherazade New', serif;
     font-size: clamp(1.5rem, 5.5vw, 2.4rem);
     color: var(--text-main);
@@ -306,6 +401,8 @@
   }
 
   .divider {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -318,6 +415,8 @@
   .divider-gem { color: var(--gold-light); font-size: 0.8rem; transition: color 0.5s; }
 
   .welcome-text {
+    position: relative;
+    z-index: 2;
     text-align: center;
     font-size: clamp(1rem, 3.5vw, 1.15rem);
     color: var(--text-muted);
@@ -327,42 +426,52 @@
     transition: color 0.5s;
   }
 
-  /* ======= أسماء العرسان — تبقى كما هي ======= */
-  .groom-name {
+  /* ======= أسماء العرسان — لمعان الرقائق المعدنية ======= */
+  .groom-name, .bride-name {
+    position: relative;
+    z-index: 2;
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(3.2rem, 13vw, 5.5rem);
     font-weight: 700;
-    color: var(--names-color);
     text-align: center;
     line-height: 1.15;
-    text-shadow: var(--names-shadow);
     letter-spacing: 0.02em;
-    transition: color 0.5s;
+    background: var(--name-sheen);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: var(--names-drop);
+    animation: foilSheen 7s ease-in-out infinite;
   }
-
-  .bride-name {
-    font-family: 'Scheherazade New', serif;
-    font-size: clamp(2.8rem, 11vw, 4.5rem);
-    font-weight: 700;
-    color: var(--names-color);
-    text-align: center;
-    line-height: 1.15;
-    text-shadow: var(--names-shadow);
-    letter-spacing: 0.02em;
-    transition: color 0.5s;
+  .groom-name { font-size: clamp(3.2rem, 13vw, 5.5rem); }
+  .bride-name { font-size: clamp(2.8rem, 11vw, 4.5rem); }
+  @keyframes foilSheen {
+    0%   { background-position: 190% 0; }
+    55%  { background-position: -90% 0; }
+    100% { background-position: -90% 0; }
   }
 
   .amp-svg {
+    position: relative;
+    z-index: 2;
     display: block;
     margin: 12px auto;
     width: 30px;
     height: 30px;
     fill: var(--gold-light);
     filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
-    transition: fill 0.5s;
+    animation: heartBeat 2.6s ease-in-out infinite;
+  }
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    28% { transform: scale(1.14); }
+    42% { transform: scale(1.04); }
+    58% { transform: scale(1.16); }
   }
 
   .honour-text {
+    position: relative;
+    z-index: 2;
     font-family: 'Amiri', serif;
     font-size: clamp(1rem, 4vw, 1.25rem);
     color: var(--text-muted);
@@ -426,13 +535,12 @@
     width: 100%;
     padding-top: 60%; 
     border: 1px solid transparent;
-    background: 
-      linear-gradient(var(--bg-solid), var(--bg-solid)) padding-box,
-      var(--border-soft) border-box;
+    background: linear-gradient(var(--bg-solid), var(--bg-solid)) padding-box,
+                var(--border-grad) border-box;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px var(--shadow);
-    transition: border 0.5s, box-shadow 0.5s;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.4s, transform 0.4s;
   }
   .slide-img {
     position: absolute;
@@ -448,28 +556,43 @@
   .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(255,255,255,0.35); transition: all 0.3s; }
   .dot.active { background-color: var(--gold-light); transform: scale(1.3); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
 
-  /* ======= COUNTDOWN — يبقى كما هو ======= */
+  /* ======= COUNTDOWN ======= */
   .countdown-section {
     background: transparent;
     padding: 30px 24px 80px 24px;
     text-align: center;
     position: relative;
   }
+
+  .date-badge {
+    display: inline-block;
+    padding: 7px 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                var(--border-grad) border-box;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px var(--shadow);
+    backdrop-filter: blur(6px);
+  }
   
   .countdown-wrapper {
     position: relative;
     padding: 40px 20px;
     border: 1px solid transparent;
-    background: 
-      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-      var(--border-soft) border-box;
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                var(--border-grad) border-box;
     border-radius: 20px;
     max-width: 420px;
     margin: 0 auto;
-    box-shadow: 0 10px 30px var(--shadow);
-    backdrop-filter: blur(6px);
-    transition: all 0.5s;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(8px);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
   }
+  .countdown-wrapper:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
 
   .countdown-label {
     font-family: 'Scheherazade New', serif;
@@ -482,35 +605,33 @@
   .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 380px; margin: 0 auto; }
    
   .countdown-box {
-    background: var(--bg-card);
     border: 1px solid transparent;
-    background: 
-      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-      var(--border-soft) border-box;
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                var(--border-grad) border-box;
     border-radius: 10px;
     padding: 18px 8px 14px;
     box-shadow: 0 4px 15px var(--shadow);
-    transition: background 0.5s, border 0.5s, box-shadow 0.5s;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
+  .countdown-box:hover { transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); }
   .countdown-num { font-family: 'Scheherazade New', serif; font-size: clamp(2rem, 7.5vw, 3rem); font-weight: 700; color: var(--gold-light); display: block; line-height: 1; transition: color 0.5s; }
   .countdown-unit { font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 6px; font-weight: 600; transition: color 0.5s; }
 
   /* ======= DETAILS CARD ======= */
   .details-card {
-    background: var(--bg-card);
     border: 1px solid transparent;
-    background: 
-      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-      var(--border-soft) border-box;
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                var(--border-grad) border-box;
     border-radius: 16px;
     padding: 40px 24px;
     max-width: 420px;
     margin: 0 auto;
-    box-shadow: 0 15px 40px var(--shadow);
-    backdrop-filter: blur(6px);
-    transition: background 0.5s, border 0.5s, box-shadow 0.5s;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(8px);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
   }
-  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.18); }
+  .details-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
+  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid var(--border-color); }
   .detail-item:last-child { border-bottom: none; }
   .card-icon-svg { width: 28px; height: 28px; fill: var(--gold-light); transition: fill 0.5s; }
   .detail-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; transition: color 0.5s; }
@@ -572,18 +693,17 @@
   }
 
   .guidelines-card {
-    background: var(--bg-card);
     border: 1px solid transparent;
-    background: 
-      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
-      var(--border-soft) border-box;
+    background: linear-gradient(160deg, var(--card-bg-1), var(--card-bg-2)) padding-box,
+                var(--border-grad) border-box;
     border-radius: 16px;
     padding: 26px 18px;
     margin-top: 30px;
-    box-shadow: 0 10px 30px var(--shadow);
-    backdrop-filter: blur(6px);
-    transition: all 0.5s;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(8px);
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
   }
+  .guidelines-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
 
   .guideline-item {
     display: flex;
@@ -615,9 +735,9 @@
     line-height: 1.7;
   }
 
-  footer { padding: 60px 24px 40px; text-align: center; border-top: 1px solid transparent; background: linear-gradient(to right, transparent, var(--border-color), transparent) top/100% 1px no-repeat; transition: border 0.5s; }
+  footer { padding: 60px 24px 40px; text-align: center; border-top: none; background: linear-gradient(to right, transparent, var(--border-color), transparent) top/100% 1px no-repeat; }
   .footer-dua { font-family: 'Scheherazade New', serif; font-size: clamp(1.1rem, 4.5vw, 1.5rem); color: var(--text-main); line-height: 2; font-weight: 600; transition: color 0.5s; }
-  .footer-heart-svg { display: block; margin: 20px auto; width: 30px; height: 30px; fill: var(--gold-light); filter: drop-shadow(0 0 8px rgba(255,255,255,0.45)); transition: fill 0.5s; }
+  .footer-heart-svg { display: block; margin: 20px auto; width: 30px; height: 30px; fill: var(--gold-light); filter: drop-shadow(0 0 8px rgba(255,255,255,0.45)); animation: heartBeat 2.6s ease-in-out infinite; transition: fill 0.5s; }
 
   /* ======= SCROLL HINT ======= */
   .scroll-hint {
@@ -635,6 +755,7 @@
     background: var(--scroll-hint-bg);
     border-radius: 16px 16px 0 0;
     backdrop-filter: blur(4px);
+    z-index: 3;
   }
   .scroll-hint span { 
     font-size: 1.2rem; 
@@ -642,7 +763,6 @@
     color: var(--gold-light); 
     transition: color 0.5s;
     text-shadow: 0 0 14px rgba(255,255,255,0.65);
-    letter-spacing: 0.05em;
   }
   .scroll-hint-arrow { 
     width: 3px; 
@@ -661,20 +781,22 @@
   .confetti-particle { position: fixed; z-index: 9999; pointer-events: none; top: -20px; will-change: transform, opacity; animation: smoothFall linear forwards; }
   @keyframes smoothFall { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(105vh) translateX(30px) rotate(360deg); opacity: 0; } }
 
-  /* ======= SCROLL ANIMATIONS ======= */
+  /* ======= SCROLL ANIMATIONS (مع blur-in سينمائي) ======= */
   .fade-in {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    filter: blur(8px);
+    transition: opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease;
   }
   .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
 
   /* ======= FLOATING PETALS ======= */
@@ -697,17 +819,9 @@
   }
 
   @keyframes fallPetal {
-    0% {
-      transform: translateY(-10vh) translateX(0) rotate(0deg);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.75;
-    }
-    100% {
-      transform: translateY(110vh) translateX(100px) rotate(720deg);
-      opacity: 0;
-    }
+    0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.75; }
+    100% { transform: translateY(110vh) translateX(100px) rotate(720deg); opacity: 0; }
   }
 
   /* ======= PROGRAM SECTION ======= */
@@ -769,12 +883,10 @@
     font-weight: 600;
   }
 
-  /* الفوتر - النص الصغير */
   .footer-year {
     font-size: 0.85rem; 
     color: var(--text-muted); 
     margin-top: 20px; 
-    letter-spacing: 0.1em;
     font-weight: 600;
     transition: color 0.5s;
   }
@@ -840,6 +952,12 @@
     <div class="corner corner-bl"></div>
     <div class="corner corner-br"></div>
 
+    <div class="monogram">
+      <span>أ</span>
+      <svg viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
+      <span>أ</span>
+    </div>
+
     <div class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
 
     <div class="divider">
@@ -904,6 +1022,7 @@
   </div>
 
   <div class="countdown-section fade-in">
+    <span class="date-badge">— احفظوا التاريخ —</span>
     <div class="countdown-wrapper">
       <p class="countdown-label" id="countdown-title">العدّ التنازلي حتى الخطوبة</p>
       <div class="countdown-grid" id="countdown-board">
@@ -1011,6 +1130,19 @@
   const iconOff = document.getElementById('icon-audio-off');
   const iconSun = document.getElementById('icon-sun');
   const iconMoon = document.getElementById('icon-moon');
+
+  /* ======= حماية كاملة من النسخ ======= */
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut', e => e.preventDefault());
+  document.addEventListener('paste', e => e.preventDefault());
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && ['c','x','s','u','a','p'].includes(e.key.toLowerCase())) e.preventDefault();
+    if (e.key === 'F12') e.preventDefault();
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase())) e.preventDefault();
+  });
 
   function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
