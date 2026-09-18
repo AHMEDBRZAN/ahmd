@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعوة خطوبة - أحمد  </title>
+<title>دعوة خطوبة - أحمد و أديان</title>
 <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ======= الوضع الأحمر المتدرج الفاتح (الافتراضي) ======= */
+  /* ======= الوضع الأحمر المتدرج (الافتراضي) ======= */
   :root {
     --gold: #ffd6dc;
     --gold-light: #ffffff;
@@ -23,7 +23,9 @@
 
     --text-main: #ffffff;
     --text-muted: #ffe4e8;
+    --text-strong: #ffffff;
     --border-color: rgba(255,255,255,0.38);
+    --border-soft: linear-gradient(135deg, rgba(255,255,255,0.5), transparent 40%, transparent 60%, rgba(255,255,255,0.5));
     --shadow: rgba(90,15,28,0.35);
     --shadow-scratch: 0 20px 45px rgba(120, 20, 35, 0.45);
 
@@ -41,7 +43,7 @@
     --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(140,25,42,0.55), rgba(95,16,28,0.92));
   }
 
-  /* ======= الوضع الوردي المتدرج الأغمق — كتابة بيضاء ======= */
+  /* ======= الوضع الوردي المتدرج — كتابة داكنة ======= */
   [data-theme="pink"] {
     --gold: #a64563;
     --gold-light: #8b3553;
@@ -50,19 +52,21 @@
 
     --bg-solid: #c97b94;
     --bg-main: linear-gradient(160deg, #e8b4bc 0%, #d98ba0 22%, #c97b94 50%, #b8697f 78%, #a65672 100%);
-    --bg-card: linear-gradient(160deg, rgba(255,255,255,0.35), rgba(255,255,255,0.18));
+    --bg-card: linear-gradient(160deg, rgba(255,255,255,0.45), rgba(255,255,255,0.22));
     --bg-gate: linear-gradient(135deg, #d98ba0 0%, #b8697f 50%, #d98ba0 100%);
 
-    /* الكتابة بيضاء */
-    --text-main: #ffffff;
-    --text-muted: #ffffff;
-    --border-color: rgba(255,255,255,0.45);
+    /* كتابة داكنة واضحة */
+    --text-main: #2a1520;
+    --text-muted: #4a2535;
+    --text-strong: #1a0a10;
+    --border-color: rgba(139,53,83,0.35);
+    --border-soft: linear-gradient(135deg, rgba(139,53,83,0.5), transparent 40%, transparent 60%, rgba(139,53,83,0.5));
     --shadow: rgba(110,42,66,0.25);
     --shadow-scratch: 0 20px 40px rgba(139, 53, 83, 0.35);
 
     --heart-reveal-bg: linear-gradient(145deg, #f0d4dc, #e8b4bc, #d98ba0);
-    --heart-border: #ffffff;
-    --heart-text: #7a2d45;
+    --heart-border: #a64563;
+    --heart-text: #4a1528;
 
     --rose: #e8b4bc;
     --rose-light: #f0d4dc;
@@ -73,22 +77,6 @@
     --names-shadow: 0 0 25px rgba(255,255,255,0.5), 0 2px 10px rgba(74,21,40,0.3);
 
     --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(201,123,148,0.6), rgba(166,69,99,0.95));
-  }
-
-  /* ظل خفيف للنصوص البيضاء في الوضع الوردي لتحسين القراءة */
-  [data-theme="pink"] .section-title,
-  [data-theme="pink"] .section-body,
-  [data-theme="pink"] .quote-text,
-  [data-theme="pink"] .bismillah,
-  [data-theme="pink"] .welcome-text,
-  [data-theme="pink"] .honour-text,
-  [data-theme="pink"] .countdown-label,
-  [data-theme="pink"] .detail-value,
-  [data-theme="pink"] .scratch-title,
-  [data-theme="pink"] .guideline-text,
-  [data-theme="pink"] .footer-dua,
-  [data-theme="pink"] .program-event {
-    text-shadow: 0 1px 4px rgba(74,21,40,0.35);
   }
 
   html { scroll-behavior: smooth; }
@@ -117,7 +105,10 @@
     height: 45px;
     border-radius: 50%;
     background: var(--bg-card);
-    border: 1px solid var(--gold);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      var(--border-soft) border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -187,7 +178,10 @@
   .arch-ornament {
     width: 60px;
     height: 200px;
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(var(--bg-gate), var(--bg-gate)) padding-box,
+      var(--border-soft) border-box;
     position: relative;
   }
   .gate-left .arch-ornament { border-radius: 100px 0 0 100px; border-right: none; }
@@ -210,7 +204,10 @@
     height: 130px;
     border-radius: 50%;
     background: var(--bg-card);
-    border: 2px solid var(--gold-light);
+    border: 2px solid transparent;
+    background: 
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      linear-gradient(135deg, var(--gold-light), transparent 30%, transparent 70%, var(--gold-light)) border-box;
     box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(255,255,255,0.15);
     backdrop-filter: blur(8px);
     display: flex;
@@ -228,7 +225,7 @@
   }
 
   .seal-text {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: bold;
     color: var(--text-main);
     text-align: center;
@@ -268,7 +265,10 @@
   .frame {
     position: absolute;
     inset: 20px;
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(transparent, transparent) padding-box,
+      var(--border-soft) border-box;
     pointer-events: none;
     transition: border 0.5s ease;
   }
@@ -298,7 +298,7 @@
 
   .bismillah {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    font-size: clamp(1.5rem, 5.5vw, 2.4rem);
     color: var(--text-main);
     text-align: center;
     margin-bottom: 30px;
@@ -319,10 +319,11 @@
 
   .welcome-text {
     text-align: center;
-    font-size: clamp(0.85rem, 3vw, 1rem);
+    font-size: clamp(1rem, 3.5vw, 1.15rem);
     color: var(--text-muted);
-    line-height: 1.8;
-    max-width: 340px;
+    line-height: 1.9;
+    max-width: 380px;
+    font-weight: 600;
     transition: color 0.5s;
   }
 
@@ -363,10 +364,11 @@
 
   .honour-text {
     font-family: 'Amiri', serif;
-    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+    font-size: clamp(1rem, 4vw, 1.25rem);
     color: var(--text-muted);
     text-align: center;
     margin-top: 10px;
+    font-weight: 600;
     transition: color 0.5s;
   }
 
@@ -382,9 +384,9 @@
 
   .quote-text {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.15rem, 4vw, 1.55rem);
+    font-size: clamp(1.2rem, 4.5vw, 1.65rem);
     color: var(--text-main);
-    line-height: 2;
+    line-height: 2.1;
     font-style: italic;
     transition: color 0.5s;
   }
@@ -399,16 +401,17 @@
 
   .section-title {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.7rem, 6vw, 2.5rem);
+    font-size: clamp(1.8rem, 6.5vw, 2.6rem);
     color: var(--text-main);
     margin-bottom: 10px;
     transition: color 0.5s;
   }
 
   .section-body {
-    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    font-size: clamp(1.05rem, 4vw, 1.2rem);
     color: var(--text-main);
-    line-height: 2;
+    line-height: 2.1;
+    font-weight: 600;
     transition: color 0.5s;
   }
 
@@ -422,11 +425,13 @@
     position: relative;
     width: 100%;
     padding-top: 60%; 
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(var(--bg-solid), var(--bg-solid)) padding-box,
+      var(--border-soft) border-box;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px var(--shadow);
-    background-color: var(--bg-solid);
     transition: border 0.5s, box-shadow 0.5s;
   }
   .slide-img {
@@ -454,11 +459,13 @@
   .countdown-wrapper {
     position: relative;
     padding: 40px 20px;
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      var(--border-soft) border-box;
     border-radius: 20px;
     max-width: 420px;
     margin: 0 auto;
-    background: var(--bg-card);
     box-shadow: 0 10px 30px var(--shadow);
     backdrop-filter: blur(6px);
     transition: all 0.5s;
@@ -466,28 +473,35 @@
 
   .countdown-label {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    font-size: clamp(1.5rem, 5.5vw, 2.3rem);
     color: var(--text-main);
     margin-bottom: 35px;
+    font-weight: 700;
     transition: color 0.5s;
   }
   .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 380px; margin: 0 auto; }
    
   .countdown-box {
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      var(--border-soft) border-box;
     border-radius: 10px;
     padding: 18px 8px 14px;
     box-shadow: 0 4px 15px var(--shadow);
     transition: background 0.5s, border 0.5s, box-shadow 0.5s;
   }
-  .countdown-num { font-family: 'Scheherazade New', serif; font-size: clamp(1.9rem, 7vw, 2.9rem); font-weight: 700; color: var(--gold-light); display: block; line-height: 1; transition: color 0.5s; }
-  .countdown-unit { font-size: 0.65rem; color: var(--text-muted); display: block; margin-top: 6px; transition: color 0.5s; }
+  .countdown-num { font-family: 'Scheherazade New', serif; font-size: clamp(2rem, 7.5vw, 3rem); font-weight: 700; color: var(--gold-light); display: block; line-height: 1; transition: color 0.5s; }
+  .countdown-unit { font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 6px; font-weight: 600; transition: color 0.5s; }
 
   /* ======= DETAILS CARD ======= */
   .details-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      var(--border-soft) border-box;
     border-radius: 16px;
     padding: 40px 24px;
     max-width: 420px;
@@ -499,12 +513,12 @@
   .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.18); }
   .detail-item:last-child { border-bottom: none; }
   .card-icon-svg { width: 28px; height: 28px; fill: var(--gold-light); transition: fill 0.5s; }
-  .detail-label { font-size: 0.75rem; color: var(--text-muted); transition: color 0.5s; }
-  .detail-value { font-family: 'Amiri', serif; font-weight: bold; font-size: clamp(1.1rem, 4vw, 1.5rem); color: var(--text-main); transition: color 0.5s; }
+  .detail-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 600; transition: color 0.5s; }
+  .detail-value { font-family: 'Amiri', serif; font-weight: bold; font-size: clamp(1.15rem, 4.5vw, 1.6rem); color: var(--text-main); transition: color 0.5s; }
 
   /* ======= SCRATCH TO REVEAL ======= */
   .scratch-section { padding: 80px 24px; text-align: center; background: transparent; }
-  .scratch-title { font-family: 'Scheherazade New', serif; font-size: clamp(1.4rem, 5vw, 2rem); color: var(--text-main); margin-bottom: 30px; transition: color 0.5s; }
+  .scratch-title { font-family: 'Scheherazade New', serif; font-size: clamp(1.5rem, 5.5vw, 2.1rem); color: var(--text-main); margin-bottom: 30px; font-weight: 700; transition: color 0.5s; }
    
   .scratch-canvas-wrap {
     position: relative;
@@ -527,7 +541,7 @@
     align-items: center;
     justify-content: center;
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.3rem, 5vw, 1.6rem); 
+    font-size: clamp(1.4rem, 5.5vw, 1.7rem); 
     color: var(--text-main);
     line-height: 2.2;
     z-index: 1;
@@ -559,7 +573,10 @@
 
   .guidelines-card {
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    background: 
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      var(--border-soft) border-box;
     border-radius: 16px;
     padding: 26px 18px;
     margin-top: 30px;
@@ -592,14 +609,14 @@
   }
 
   .guideline-text {
-    font-size: 0.98rem;
+    font-size: 1.05rem;
     font-weight: bold;
     color: var(--text-main);
     line-height: 1.7;
   }
 
-  footer { padding: 60px 24px 40px; text-align: center; border-top: 1px solid var(--border-color); transition: border 0.5s; }
-  .footer-dua { font-family: 'Scheherazade New', serif; font-size: clamp(1.05rem, 4vw, 1.45rem); color: var(--text-main); line-height: 2; transition: color 0.5s; }
+  footer { padding: 60px 24px 40px; text-align: center; border-top: 1px solid transparent; background: linear-gradient(to right, transparent, var(--border-color), transparent) top/100% 1px no-repeat; transition: border 0.5s; }
+  .footer-dua { font-family: 'Scheherazade New', serif; font-size: clamp(1.1rem, 4.5vw, 1.5rem); color: var(--text-main); line-height: 2; font-weight: 600; transition: color 0.5s; }
   .footer-heart-svg { display: block; margin: 20px auto; width: 30px; height: 30px; fill: var(--gold-light); filter: drop-shadow(0 0 8px rgba(255,255,255,0.45)); transition: fill 0.5s; }
 
   /* ======= SCROLL HINT ======= */
@@ -620,7 +637,7 @@
     backdrop-filter: blur(4px);
   }
   .scroll-hint span { 
-    font-size: 1.15rem; 
+    font-size: 1.2rem; 
     font-weight: bold;
     color: var(--gold-light); 
     transition: color 0.5s;
@@ -739,16 +756,27 @@
 
   .program-time {
     font-family: 'Scheherazade New', serif;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     color: var(--gold-light);
     font-weight: bold;
     transition: color 0.5s;
   }
 
   .program-event {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--text-main);
     margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* الفوتر - النص الصغير */
+  .footer-year {
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+    margin-top: 20px; 
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: color 0.5s;
   }
 </style>
 </head>
@@ -958,8 +986,8 @@
     <p class="scratch-title" id="scratch-header">✦ امسح للكشف ✦</p>
     <div class="scratch-canvas-wrap">
       <div id="scratch-reveal">
-        <p style="font-size: 1.4rem; margin-bottom: 8px;">كتبنا البداية</p>
-        <p style="font-size: 1.4rem;">والباقي كله حب</p>
+        <p style="font-size: 1.5rem; margin-bottom: 8px;">كتبنا البداية</p>
+        <p style="font-size: 1.5rem;">والباقي كله حب</p>
       </div>
       <canvas id="scratch-canvas"></canvas>
     </div>
@@ -971,7 +999,7 @@
     <p class="footer-dua">اللهم بارك هذه الخطوبة<br>واجعلها بداية حياة سعيدة مليئة بالحب والهناء</p>
     <svg class="footer-heart-svg" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
     <div class="divider"><div class="divider-line"></div><div class="divider-gem">❖</div><div class="divider-line rev"></div></div>
-    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 20px; letter-spacing: 0.1em;">أحمد و أديان — ٢٠٢٦ م</p>
+    <p class="footer-year">أحمد و أديان — ٢٠٢٦ م</p>
   </footer>
 
 </div>
@@ -1111,7 +1139,7 @@
       grad.addColorStop(1, '#d98ba0');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#ffffff'; 
+      ctx.fillStyle = '#2a1520'; 
     } else {
       grad.addColorStop(0, '#ffe4e8'); 
       grad.addColorStop(0.5, '#f5b8c2'); 
@@ -1121,7 +1149,7 @@
       ctx.fillStyle = '#8f1f2e'; 
     }
 
-    ctx.font = 'bold 17px Amiri, serif';
+    ctx.font = 'bold 18px Amiri, serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('✦ امسح هنا للكشف ✦', canvas.width / 2, canvas.height / 2);
@@ -1189,7 +1217,7 @@
     function triggerOptimizedCelebration() {
       const isPink = document.documentElement.getAttribute('data-theme') === 'pink';
       const colors = isPink 
-        ? ['#ffffff', '#e8b4bc', '#a64563', '#d98ba0', '#f0d4dc', '#c97b94']
+        ? ['#a64563', '#e8b4bc', '#8b3553', '#d98ba0', '#f0d4dc', '#c97b94']
         : ['#ffffff', '#ffd6dc', '#ff8fa0', '#a8283a', '#ffe4e8', '#f2a3b3'];
       const totalParticles = 120;
 
