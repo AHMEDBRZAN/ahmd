@@ -9,28 +9,28 @@
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ======= الوضع الداكن الأحمر والأبيض (الافتراضي) ======= */
+  /* ======= الوضع الداكن الأحمر المتدرج (الافتراضي) ======= */
   :root {
-    --gold: #e63946;          /* Crimson red */
+    --gold: #e63946;
     --gold-light: #ff6b7a;
     --gold-dark: #c1121f;
-    --crimson: #ffffff;        /* White for main text */
-    --bg-main: #0a0000;       /* Deep black */
-    --bg-card: linear-gradient(160deg, #1a0505, #0d0202);
-    --bg-gate: linear-gradient(135deg, #1a0505 0%, #0d0202 50%, #1a0505 100%);
-    --text-main: #ffffff;     /* Pure white */
-    --text-muted: #d4d4d4;    /* Light gray */
-    --border-color: rgba(230,57,70,0.3);
-    --shadow: rgba(0,0,0,0.7);
-    --shadow-scratch: 0 20px 45px rgba(193, 18, 31, 0.4);
+    --crimson: #ffffff;
+    --bg-main: #3d1111;
+    --bg-card: linear-gradient(160deg, #5a1e1e, #2d0a0a);
+    --bg-gate: linear-gradient(135deg, #5a1e1e 0%, #2d0a0a 50%, #5a1e1e 100%);
+    --text-main: #fff5f5;
+    --text-muted: #e8c8c8;
+    --border-color: rgba(230,57,70,0.4);
+    --shadow: rgba(45,10,10,0.5);
+    --shadow-scratch: 0 20px 45px rgba(193, 18, 31, 0.35);
     
-    --heart-reveal-bg: linear-gradient(145deg, #1a0202, #2d0808, #0d0101);
-    --heart-border: #e63946;
+    --heart-reveal-bg: linear-gradient(145deg, #5a1e1e, #7a2a2a, #3d1111);
+    --heart-border: #ff6b7a;
     --heart-text: #ffffff;
     
-    --rose: #e63946;
-    --rose-light: #1a0505;
-    --peach: #0a0000;
+    --rose: #ff6b7a;
+    --rose-light: #5a1e1e;
+    --peach: #3d1111;
   }
 
   /* ======= الوضع الوردي البِناتي ======= */
@@ -132,8 +132,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(230,57,70,0.03) 40px, rgba(230,57,70,0.03) 41px),
-      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(230,57,70,0.03) 40px, rgba(230,57,70,0.03) 41px);
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,107,122,0.04) 40px, rgba(255,107,122,0.04) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,107,122,0.04) 40px, rgba(255,107,122,0.04) 41px);
   }
 
   .gate-arch {
@@ -174,7 +174,7 @@
     border-radius: 50%;
     background: var(--bg-card);
     border: 2px solid var(--gold);
-    box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(230,57,70,0.1);
+    box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(230,57,70,0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,8 +185,8 @@
     padding: 10px;
   }
   @keyframes sealPulse {
-    0%, 100% { box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(230,57,70,0.1); }
-    50% { box-shadow: 0 6px 30px var(--shadow), 0 0 0 10px rgba(230,57,70,0.05); }
+    0%, 100% { box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(230,57,70,0.15); }
+    50% { box-shadow: 0 6px 30px var(--shadow), 0 0 0 10px rgba(230,57,70,0.08); }
   }
 
   .seal-text {
@@ -224,8 +224,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(230,57,70,0.02) 60px, rgba(230,57,70,0.02) 1px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(230,57,70,0.02) 60px, rgba(230,57,70,0.02) 1px);
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,107,122,0.03) 60px, rgba(255,107,122,0.03) 1px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,107,122,0.03) 60px, rgba(255,107,122,0.03) 1px);
   }
 
   .frame {
@@ -251,7 +251,7 @@
     height: 40px;
     border-color: var(--gold);
     border-style: solid;
-    opacity: 0.4;
+    opacity: 0.5;
     transition: border-color 0.5s;
   }
   .corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
@@ -292,10 +292,10 @@
   .groom-name {
     font-family: 'Scheherazade New', serif;
     font-size: clamp(3rem, 12vw, 5rem);
-    color: var(--gold);
+    color: var(--gold-light);
     text-align: center;
     line-height: 1.1;
-    text-shadow: 0 0 20px rgba(230,57,70,0.5);
+    text-shadow: 0 0 25px rgba(255,107,122,0.6);
     transition: color 0.5s;
   }
 
@@ -304,7 +304,7 @@
     font-size: clamp(2.5rem, 10vw, 4rem);
     color: var(--text-main);
     text-align: center;
-    text-shadow: 0 0 15px rgba(255,255,255,0.3);
+    text-shadow: 0 0 15px rgba(255,245,245,0.4);
     transition: color 0.5s;
   }
 
@@ -339,9 +339,10 @@
   .quote-text {
     font-family: 'Scheherazade New', serif;
     font-size: clamp(1.1rem, 4vw, 1.5rem);
-    color: var(--gold);
+    color: var(--gold-light);
     line-height: 2;
     font-style: italic;
+    text-shadow: 0 0 12px rgba(255,107,122,0.3);
     transition: color 0.5s;
   }
 
@@ -356,9 +357,9 @@
   .section-title {
     font-family: 'Scheherazade New', serif;
     font-size: clamp(1.6rem, 6vw, 2.4rem);
-    color: var(--gold);
+    color: var(--gold-light);
     margin-bottom: 10px;
-    text-shadow: 0 0 10px rgba(230,57,70,0.3);
+    text-shadow: 0 0 12px rgba(255,107,122,0.35);
     transition: color 0.5s;
   }
 
@@ -397,8 +398,8 @@
   .slide-img.active { opacity: 1; }
 
   .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(230,57,70,0.2); transition: all 0.3s; }
-  .dot.active { background-color: var(--gold); transform: scale(1.2); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(255,107,122,0.25); transition: all 0.3s; }
+  .dot.active { background-color: var(--gold-light); transform: scale(1.2); }
 
   /* ======= COUNTDOWN ======= */
   .countdown-section {
@@ -438,7 +439,7 @@
     box-shadow: 0 4px 15px var(--shadow);
     transition: background 0.5s, border 0.5s, box-shadow 0.5s;
   }
-  .countdown-num { font-family: 'Scheherazade New', serif; font-size: clamp(1.8rem, 7vw, 2.8rem); color: var(--gold); display: block; line-height: 1; transition: color 0.5s; }
+  .countdown-num { font-family: 'Scheherazade New', serif; font-size: clamp(1.8rem, 7vw, 2.8rem); color: var(--gold-light); display: block; line-height: 1; transition: color 0.5s; }
   .countdown-unit { font-size: 0.65rem; color: var(--text-muted); display: block; margin-top: 6px; transition: color 0.5s; }
 
   /* ======= DETAILS CARD ======= */
@@ -452,7 +453,7 @@
     box-shadow: 0 15px 40px var(--shadow);
     transition: background 0.5s, border 0.5s, box-shadow 0.5s;
   }
-  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(230,57,70,0.1); }
+  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(255,107,122,0.15); }
   .detail-item:last-child { border-bottom: none; }
   .card-icon-svg { width: 28px; height: 28px; fill: var(--gold); transition: fill 0.5s; }
   .detail-label { font-size: 0.75rem; color: var(--text-muted); transition: color 0.5s; }
@@ -460,7 +461,7 @@
 
   /* ======= SCRATCH TO REVEAL ======= */
   .scratch-section { padding: 80px 24px; text-align: center; background: var(--bg-main); transition: background 0.5s; }
-  .scratch-title { font-family: 'Scheherazade New', serif; font-size: clamp(1.4rem, 5vw, 2rem); color: var(--gold); margin-bottom: 30px; transition: color 0.5s; }
+  .scratch-title { font-family: 'Scheherazade New', serif; font-size: clamp(1.4rem, 5vw, 2rem); color: var(--gold-light); margin-bottom: 30px; transition: color 0.5s; }
    
   .scratch-canvas-wrap {
     position: relative;
@@ -485,11 +486,11 @@
     font-family: 'Scheherazade New', serif;
     font-size: clamp(1.3rem, 5vw, 1.6rem); 
     color: var(--text-main);
-    line-height: 2;
+    line-height: 2.2;
     z-index: 1;
     padding: 40px 25px;
     border: 2px solid var(--heart-border);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
     transition: background 0.8s ease, color 0.5s, border-color 0.5s;
   }
 
@@ -500,22 +501,12 @@
 
   #scratch-reveal.revealed p {
     font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  }
-
-  #scratch-reveal.revealed .revealed-heart {
-    fill: var(--heart-border) !important;
-    animation: heartPulseGlow 1.8s infinite alternate ease-in-out;
-  }
-
-  @keyframes heartPulseGlow {
-    0% { transform: scale(1); filter: drop-shadow(0 0 1px rgba(230,57,70,0.1)); }
-    100% { transform: scale(1.15); filter: drop-shadow(0 0 6px var(--gold)); }
+    text-shadow: 0 1px 2px rgba(0,0,0,0.08);
   }
 
   #scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; cursor: crosshair; touch-action: none; }
 
-  /* ======= GUEST GUIDELINES SECTION (جديد) ======= */
+  /* ======= GUEST GUIDELINES SECTION ======= */
   .guidelines-section {
     padding: 60px 24px;
     max-width: 500px;
@@ -524,7 +515,7 @@
   }
 
   .guidelines-card {
-    background: linear-gradient(135deg, var(--bg-card), rgba(230,57,70,0.05));
+    background: linear-gradient(135deg, var(--bg-card), rgba(255,107,122,0.06));
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 30px 20px;
@@ -539,7 +530,7 @@
     gap: 15px;
     padding: 18px;
     margin: 12px 0;
-    background: linear-gradient(90deg, rgba(230,57,70,0.05), transparent);
+    background: linear-gradient(90deg, rgba(255,107,122,0.08), transparent);
     border-right: 3px solid var(--gold);
     border-radius: 8px;
     text-align: right;
@@ -547,7 +538,7 @@
   }
 
   .guideline-item:hover {
-    background: linear-gradient(90deg, rgba(230,57,70,0.1), transparent);
+    background: linear-gradient(90deg, rgba(255,107,122,0.15), transparent);
     transform: translateX(-5px);
   }
 
@@ -566,7 +557,7 @@
   .footer-dua { font-family: 'Scheherazade New', serif; font-size: clamp(1rem, 4vw, 1.4rem); color: var(--text-muted); line-height: 2; transition: color 0.5s; }
   .footer-heart-svg { display: block; margin: 20px auto; width: 30px; height: 30px; fill: var(--gold); transition: fill 0.5s; }
 
-  /* ======= SCROLL HINT (أكبر وأوضح) ======= */
+  /* ======= SCROLL HINT ======= */
   .scroll-hint {
     position: absolute;
     bottom: 20px; 
@@ -576,23 +567,23 @@
     flex-direction: column; 
     align-items: center; 
     gap: 12px;
-    opacity: 0.9; 
+    opacity: 0.95; 
     animation: bounce 2s infinite;
     padding: 20px;
-    background: linear-gradient(to bottom, transparent, rgba(230,57,70,0.1), rgba(10,0,0,0.9));
+    background: linear-gradient(to bottom, transparent, rgba(230,57,70,0.15), rgba(61,17,17,0.95));
     border-radius: 12px;
   }
   .scroll-hint span { 
     font-size: 1.1rem; 
     font-weight: bold;
-    color: var(--gold); 
+    color: var(--gold-light); 
     transition: color 0.5s;
-    text-shadow: 0 0 10px rgba(230,57,70,0.5);
+    text-shadow: 0 0 10px rgba(255,107,122,0.6);
   }
   .scroll-hint-arrow { 
     width: 3px; 
     height: 50px; 
-    background: linear-gradient(to bottom, var(--gold), transparent); 
+    background: linear-gradient(to bottom, var(--gold-light), transparent); 
     border-radius: 2px;
   }
   @keyframes bounce { 
@@ -637,7 +628,7 @@
     border-radius: 50% 0 50% 50%;
     transform: rotate(-45deg);
     opacity: 0.7;
-    box-shadow: 0 2px 4px rgba(230,57,70,0.2);
+    box-shadow: 0 2px 4px rgba(255,107,122,0.3);
   }
 
   @keyframes fallPetal {
@@ -700,7 +691,7 @@
   .program-time {
     font-family: 'Scheherazade New', serif;
     font-size: 1.2rem;
-    color: var(--gold);
+    color: var(--gold-light);
     font-weight: bold;
   }
 
@@ -908,14 +899,6 @@
         <span class="guideline-icon">⏰</span>
         <span class="guideline-text">الرجاء الالتزام بالموعد المحدد</span>
       </div>
-      <div class="guideline-item">
-        <span class="guideline-icon">👔</span>
-        <span class="guideline-text">الزي الرسمي أو الأنيق</span>
-      </div>
-      <div class="guideline-item">
-        <span class="guideline-icon">📵</span>
-        <span class="guideline-text">يرجى وضع الهاتف على الوضع الصامت</span>
-      </div>
     </div>
   </div>
 
@@ -925,10 +908,8 @@
     <p class="scratch-title" id="scratch-header">✦ امسح للكشف ✦</p>
     <div class="scratch-canvas-wrap">
       <div id="scratch-reveal">
-        <svg class="revealed-heart" style="width:32px; height:32px; fill:var(--gold); margin-bottom:15px; transition: all 0.3s;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
         <p style="font-size: 1.4rem; margin-bottom: 8px;">كتبنا البداية</p>
-        <p style="font-size: 1.4rem; margin-bottom: 15px;">والباقي كله حب</p>
-        <svg class="revealed-heart" style="width:32px; height:32px; fill:var(--gold); transition: all 0.3s;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
+        <p style="font-size: 1.4rem;">والباقي كله حب</p>
       </div>
       <canvas id="scratch-canvas"></canvas>
     </div>
@@ -1082,9 +1063,9 @@
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#a64563'; 
     } else {
-      grad.addColorStop(0, '#c1121f'); 
-      grad.addColorStop(0.5, '#1a0505'); 
-      grad.addColorStop(1, '#2d0808');
+      grad.addColorStop(0, '#ff6b7a'); 
+      grad.addColorStop(0.5, '#5a1e1e'); 
+      grad.addColorStop(1, '#7a2a2a');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#ffffff'; 
@@ -1159,7 +1140,7 @@
       const isPink = document.documentElement.getAttribute('data-theme') === 'pink';
       const colors = isPink 
         ? ['#b76e79', '#e8b4bc', '#a64563', '#ffd4e0', '#c97b8b', '#8b6577']
-        : ['#e63946', '#ffffff', '#c1121f', '#ff6b7a', '#d4d4d4', '#1a0505'];
+        : ['#ff6b7a', '#ffffff', '#e63946', '#ff8fa0', '#ffe4e4', '#7a2a2a'];
       const totalParticles = 120;
 
       for (let i = 0; i < totalParticles; i++) {
