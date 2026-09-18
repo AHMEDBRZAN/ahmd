@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعوة خطوبة - أحمد  </title>
+<title>دعوة خطوبة أحمد</title>
 <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
@@ -41,36 +41,36 @@
     --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(140,25,42,0.55), rgba(95,16,28,0.92));
   }
 
-  /* ======= الوضع الوردي البِناتي ======= */
+  /* ======= الوضع الوردي المتدرج الأغمق ======= */
   [data-theme="pink"] {
-    --gold: #b76e79;
-    --gold-light: #e8b4bc;
-    --gold-dark: #8a4a55;
-    --crimson: #a64563;
+    --gold: #a64563;
+    --gold-light: #8b3553;
+    --gold-dark: #6e2a42;
+    --crimson: #7a2d45;
 
-    --bg-solid: #fff0f5;
-    --bg-main: linear-gradient(160deg, #fff8fa 0%, #ffe9ef 25%, #ffdce5 55%, #fff0f5 80%, #ffe4ec 100%);
-    --bg-card: linear-gradient(160deg, #fffafc, #ffe9ef);
-    --bg-gate: linear-gradient(135deg, #fff5f8 0%, #ffe4ec 50%, #fff5f8 100%);
+    --bg-solid: #c97b94;
+    --bg-main: linear-gradient(160deg, #e8b4bc 0%, #d98ba0 22%, #c97b94 50%, #b8697f 78%, #a65672 100%);
+    --bg-card: linear-gradient(160deg, rgba(255,255,255,0.35), rgba(255,255,255,0.18));
+    --bg-gate: linear-gradient(135deg, #d98ba0 0%, #b8697f 50%, #d98ba0 100%);
 
-    --text-main: #4a2c3a;
-    --text-muted: #8b6577;
-    --border-color: rgba(183,110,121,0.3);
-    --shadow: rgba(166,69,99,0.12);
-    --shadow-scratch: 0 20px 40px rgba(183, 110, 121, 0.2);
+    --text-main: #3d1a28;
+    --text-muted: #5a2840;
+    --border-color: rgba(139,53,83,0.35);
+    --shadow: rgba(110,42,66,0.18);
+    --shadow-scratch: 0 20px 40px rgba(139, 53, 83, 0.3);
 
-    --heart-reveal-bg: linear-gradient(145deg, #fff5f8, #ffe4ec, #ffd4e0);
-    --heart-border: #b76e79;
-    --heart-text: #a64563;
+    --heart-reveal-bg: linear-gradient(145deg, #f0d4dc, #e8b4bc, #d98ba0);
+    --heart-border: #a64563;
+    --heart-text: #4a1528;
 
     --rose: #e8b4bc;
-    --rose-light: #ffd4e0;
-    --peach: #ffe4ec;
+    --rose-light: #f0d4dc;
+    --peach: #d98ba0;
 
-    --names-color: #8a3b52;
-    --names-shadow: 0 2px 10px rgba(166,69,99,0.25);
+    --names-color: #3d1a28;
+    --names-shadow: 0 0 25px rgba(139,53,83,0.4), 0 2px 10px rgba(74,21,40,0.3);
 
-    --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(255,212,224,0.55), rgba(255,228,236,0.92));
+    --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(201,123,148,0.6), rgba(166,69,99,0.95));
   }
 
   html { scroll-behavior: smooth; }
@@ -309,7 +309,7 @@
     transition: color 0.5s;
   }
 
-  /* ======= أسماء العرسان — أبيض غامق وحجم مناسب ======= */
+  /* ======= أسماء العرسان ======= */
   .groom-name {
     font-family: 'Scheherazade New', serif;
     font-size: clamp(3.2rem, 13vw, 5.5rem);
@@ -1093,11 +1093,11 @@
 
     if (isPink) {
       grad.addColorStop(0, '#e8b4bc'); 
-      grad.addColorStop(0.5, '#fff5f8'); 
-      grad.addColorStop(1, '#b76e79');
+      grad.addColorStop(0.5, '#f0d4dc'); 
+      grad.addColorStop(1, '#d98ba0');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#a64563'; 
+      ctx.fillStyle = '#7a2d45'; 
     } else {
       grad.addColorStop(0, '#ffe4e8'); 
       grad.addColorStop(0.5, '#f5b8c2'); 
@@ -1175,7 +1175,7 @@
     function triggerOptimizedCelebration() {
       const isPink = document.documentElement.getAttribute('data-theme') === 'pink';
       const colors = isPink 
-        ? ['#b76e79', '#e8b4bc', '#a64563', '#ffd4e0', '#c97b8b', '#8b6577']
+        ? ['#a64563', '#e8b4bc', '#7a2d45', '#d98ba0', '#c97b94', '#b8697f']
         : ['#ffffff', '#ffd6dc', '#ff8fa0', '#a8283a', '#ffe4e8', '#f2a3b3'];
       const totalParticles = 120;
 
