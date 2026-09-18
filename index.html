@@ -9,28 +9,36 @@
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ======= الوضع الداكن الأحمر المتدرج (الافتراضي) ======= */
+  /* ======= الوضع الأحمر المتدرج الفاتح (الافتراضي) ======= */
   :root {
-    --gold: #e63946;
-    --gold-light: #ff6b7a;
-    --gold-dark: #c1121f;
+    --gold: #ffd6dc;
+    --gold-light: #ffffff;
+    --gold-dark: #f5b8c2;
     --crimson: #ffffff;
-    --bg-main: #3d1111;
-    --bg-card: linear-gradient(160deg, #5a1e1e, #2d0a0a);
-    --bg-gate: linear-gradient(135deg, #5a1e1e 0%, #2d0a0a 50%, #5a1e1e 100%);
-    --text-main: #fff5f5;
-    --text-muted: #e8c8c8;
-    --border-color: rgba(230,57,70,0.4);
-    --shadow: rgba(45,10,10,0.5);
-    --shadow-scratch: 0 20px 45px rgba(193, 18, 31, 0.35);
-    
-    --heart-reveal-bg: linear-gradient(145deg, #5a1e1e, #7a2a2a, #3d1111);
-    --heart-border: #ff6b7a;
-    --heart-text: #ffffff;
-    
-    --rose: #ff6b7a;
-    --rose-light: #5a1e1e;
-    --peach: #3d1111;
+
+    --bg-solid: #a8283a;
+    --bg-main: linear-gradient(160deg, #d05a6e 0%, #b8404f 22%, #9c2436 50%, #c14a5e 78%, #8f1f2e 100%);
+    --bg-card: linear-gradient(160deg, rgba(255,255,255,0.24), rgba(255,255,255,0.08));
+    --bg-gate: linear-gradient(135deg, #c14a5e 0%, #9c2436 50%, #c14a5e 100%);
+
+    --text-main: #ffffff;
+    --text-muted: #ffe4e8;
+    --border-color: rgba(255,255,255,0.38);
+    --shadow: rgba(90,15,28,0.35);
+    --shadow-scratch: 0 20px 45px rgba(120, 20, 35, 0.45);
+
+    --heart-reveal-bg: linear-gradient(145deg, #f2a3b3, #d96b80, #e8849a);
+    --heart-border: #ffffff;
+    --heart-text: #6b1020;
+
+    --rose: #ffd6dc;
+    --rose-light: rgba(255,255,255,0.25);
+    --peach: #c14a5e;
+
+    --names-color: #f7f2ec;
+    --names-shadow: 0 0 30px rgba(255,255,255,0.45), 0 2px 8px rgba(90,15,28,0.5);
+
+    --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(140,25,42,0.55), rgba(95,16,28,0.92));
   }
 
   /* ======= الوضع الوردي البِناتي ======= */
@@ -39,28 +47,37 @@
     --gold-light: #e8b4bc;
     --gold-dark: #8a4a55;
     --crimson: #a64563;
-    --bg-main: #fff0f5;
-    --bg-card: linear-gradient(160deg, #fff5f8, #ffe4ec);
+
+    --bg-solid: #fff0f5;
+    --bg-main: linear-gradient(160deg, #fff8fa 0%, #ffe9ef 25%, #ffdce5 55%, #fff0f5 80%, #ffe4ec 100%);
+    --bg-card: linear-gradient(160deg, #fffafc, #ffe9ef);
     --bg-gate: linear-gradient(135deg, #fff5f8 0%, #ffe4ec 50%, #fff5f8 100%);
+
     --text-main: #4a2c3a;
     --text-muted: #8b6577;
-    --border-color: rgba(183,110,121,0.25);
-    --shadow: rgba(166,69,99,0.08);
-    --shadow-scratch: 0 20px 40px rgba(183, 110, 121, 0.15);
-    
+    --border-color: rgba(183,110,121,0.3);
+    --shadow: rgba(166,69,99,0.12);
+    --shadow-scratch: 0 20px 40px rgba(183, 110, 121, 0.2);
+
     --heart-reveal-bg: linear-gradient(145deg, #fff5f8, #ffe4ec, #ffd4e0);
     --heart-border: #b76e79;
     --heart-text: #a64563;
-    
+
     --rose: #e8b4bc;
     --rose-light: #ffd4e0;
     --peach: #ffe4ec;
+
+    --names-color: #8a3b52;
+    --names-shadow: 0 2px 10px rgba(166,69,99,0.25);
+
+    --scroll-hint-bg: linear-gradient(to bottom, transparent, rgba(255,212,224,0.55), rgba(255,228,236,0.92));
   }
 
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg-main);
+    background-attachment: fixed;
     color: var(--text-main);
     font-family: 'Amiri', serif;
     overflow-x: hidden;
@@ -88,16 +105,17 @@
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 15px var(--shadow);
+    backdrop-filter: blur(6px);
     transition: transform 0.3s, box-shadow 0.3s, background 0.5s;
   }
   .control-btn:hover {
     transform: scale(1.08);
-    box-shadow: 0 0 14px rgba(230,57,70,0.5);
+    box-shadow: 0 0 16px rgba(255,255,255,0.45);
   }
   .control-btn svg {
     width: 22px;
     height: 22px;
-    fill: var(--gold);
+    fill: var(--gold-light);
     transition: fill 0.5s;
   }
   
@@ -108,7 +126,7 @@
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: var(--bg-main);
+    background: var(--bg-gate);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -132,8 +150,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,107,122,0.04) 40px, rgba(255,107,122,0.04) 41px),
-      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,107,122,0.04) 40px, rgba(255,107,122,0.04) 41px);
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255,255,255,0.06) 40px, rgba(255,255,255,0.06) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.06) 40px, rgba(255,255,255,0.06) 41px);
   }
 
   .gate-arch {
@@ -161,7 +179,8 @@
     position: absolute;
     top: 0; bottom: 0;
     width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+    background: linear-gradient(to bottom, transparent, var(--gold-light) 20%, var(--gold-light) 80%, transparent);
+    opacity: 0.7;
   }
   .gate-left .gate-line { right: 20px; }
   .gate-right .gate-line { left: 20px; }
@@ -173,8 +192,9 @@
     height: 130px;
     border-radius: 50%;
     background: var(--bg-card);
-    border: 2px solid var(--gold);
-    box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(230,57,70,0.15);
+    border: 2px solid var(--gold-light);
+    box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,8 +205,8 @@
     padding: 10px;
   }
   @keyframes sealPulse {
-    0%, 100% { box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(230,57,70,0.15); }
-    50% { box-shadow: 0 6px 30px var(--shadow), 0 0 0 10px rgba(230,57,70,0.08); }
+    0%, 100% { box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(255,255,255,0.15); }
+    50% { box-shadow: 0 6px 32px var(--shadow), 0 0 0 12px rgba(255,255,255,0.07); }
   }
 
   .seal-text {
@@ -213,10 +233,9 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 60px 20px 120px;
-    background: var(--bg-main);
+    padding: 60px 20px 130px;
+    background: transparent;
     overflow: hidden;
-    transition: background 0.5s ease;
   }
 
   .hero::before {
@@ -224,8 +243,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,107,122,0.03) 60px, rgba(255,107,122,0.03) 1px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,107,122,0.03) 60px, rgba(255,107,122,0.03) 1px);
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.04) 60px, rgba(255,255,255,0.04) 1px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.04) 60px, rgba(255,255,255,0.04) 1px);
   }
 
   .frame {
@@ -238,7 +257,7 @@
   .frame::before, .frame::after {
     content: '❖';
     position: absolute;
-    color: var(--gold);
+    color: var(--gold-light);
     font-size: 1.2rem;
     transition: color 0.5s;
   }
@@ -249,9 +268,9 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    border-color: var(--gold);
+    border-color: var(--gold-light);
     border-style: solid;
-    opacity: 0.5;
+    opacity: 0.55;
     transition: border-color 0.5s;
   }
   .corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
@@ -265,6 +284,7 @@
     color: var(--text-main);
     text-align: center;
     margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(90,15,28,0.4);
     transition: color 0.5s;
   }
 
@@ -276,9 +296,9 @@
     max-width: 340px;
     margin: 20px auto;
   }
-  .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
-  .divider-line.rev { background: linear-gradient(to left, transparent, var(--gold), transparent); }
-  .divider-gem { color: var(--gold); font-size: 0.8rem; transition: color 0.5s; }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); opacity: 0.8; }
+  .divider-line.rev { background: linear-gradient(to left, transparent, var(--gold-light), transparent); }
+  .divider-gem { color: var(--gold-light); font-size: 0.8rem; transition: color 0.5s; }
 
   .welcome-text {
     text-align: center;
@@ -289,31 +309,38 @@
     transition: color 0.5s;
   }
 
+  /* ======= أسماء العرسان — أبيض غامق وكبير ======= */
   .groom-name {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(3rem, 12vw, 5rem);
-    color: var(--gold-light);
+    font-size: clamp(4rem, 16vw, 7rem);
+    font-weight: 700;
+    color: var(--names-color);
     text-align: center;
-    line-height: 1.1;
-    text-shadow: 0 0 25px rgba(255,107,122,0.6);
+    line-height: 1.15;
+    text-shadow: var(--names-shadow);
+    letter-spacing: 0.02em;
     transition: color 0.5s;
   }
 
   .bride-name {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(2.5rem, 10vw, 4rem);
-    color: var(--text-main);
+    font-size: clamp(3.4rem, 14vw, 6rem);
+    font-weight: 700;
+    color: var(--names-color);
     text-align: center;
-    text-shadow: 0 0 15px rgba(255,245,245,0.4);
+    line-height: 1.15;
+    text-shadow: var(--names-shadow);
+    letter-spacing: 0.02em;
     transition: color 0.5s;
   }
 
   .amp-svg {
     display: block;
-    margin: 10px auto;
-    width: 24px;
-    height: 24px;
-    fill: var(--gold);
+    margin: 12px auto;
+    width: 30px;
+    height: 30px;
+    fill: var(--gold-light);
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
     transition: fill 0.5s;
   }
 
@@ -338,11 +365,11 @@
 
   .quote-text {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.1rem, 4vw, 1.5rem);
-    color: var(--gold-light);
+    font-size: clamp(1.15rem, 4vw, 1.55rem);
+    color: var(--text-main);
     line-height: 2;
     font-style: italic;
-    text-shadow: 0 0 12px rgba(255,107,122,0.3);
+    text-shadow: 0 2px 10px rgba(90,15,28,0.35);
     transition: color 0.5s;
   }
 
@@ -356,10 +383,10 @@
 
   .section-title {
     font-family: 'Scheherazade New', serif;
-    font-size: clamp(1.6rem, 6vw, 2.4rem);
-    color: var(--gold-light);
+    font-size: clamp(1.7rem, 6vw, 2.5rem);
+    color: var(--text-main);
     margin-bottom: 10px;
-    text-shadow: 0 0 12px rgba(255,107,122,0.35);
+    text-shadow: 0 2px 12px rgba(90,15,28,0.4);
     transition: color 0.5s;
   }
 
@@ -384,7 +411,7 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px var(--shadow);
-    background-color: var(--bg-main);
+    background-color: var(--bg-solid);
     transition: border 0.5s, box-shadow 0.5s;
   }
   .slide-img {
@@ -398,15 +425,14 @@
   .slide-img.active { opacity: 1; }
 
   .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(255,107,122,0.25); transition: all 0.3s; }
-  .dot.active { background-color: var(--gold-light); transform: scale(1.2); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(255,255,255,0.35); transition: all 0.3s; }
+  .dot.active { background-color: var(--gold-light); transform: scale(1.3); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
 
   /* ======= COUNTDOWN ======= */
   .countdown-section {
-    background: var(--bg-main);
+    background: transparent;
     padding: 30px 24px 80px 24px;
     text-align: center;
-    transition: background 0.5s;
     position: relative;
   }
   
@@ -419,6 +445,7 @@
     margin: 0 auto;
     background: var(--bg-card);
     box-shadow: 0 10px 30px var(--shadow);
+    backdrop-filter: blur(6px);
     transition: all 0.5s;
   }
 
@@ -427,6 +454,7 @@
     font-size: clamp(1.4rem, 5vw, 2.2rem);
     color: var(--text-main);
     margin-bottom: 35px;
+    text-shadow: 0 2px 8px rgba(90,15,28,0.35);
     transition: color 0.5s;
   }
   .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 380px; margin: 0 auto; }
@@ -439,7 +467,7 @@
     box-shadow: 0 4px 15px var(--shadow);
     transition: background 0.5s, border 0.5s, box-shadow 0.5s;
   }
-  .countdown-num { font-family: 'Scheherazade New', serif; font-size: clamp(1.8rem, 7vw, 2.8rem); color: var(--gold-light); display: block; line-height: 1; transition: color 0.5s; }
+  .countdown-num { font-family: 'Scheherazade New', serif; font-size: clamp(1.9rem, 7vw, 2.9rem); font-weight: 700; color: var(--gold-light); display: block; line-height: 1; text-shadow: 0 0 12px rgba(255,255,255,0.4); transition: color 0.5s; }
   .countdown-unit { font-size: 0.65rem; color: var(--text-muted); display: block; margin-top: 6px; transition: color 0.5s; }
 
   /* ======= DETAILS CARD ======= */
@@ -451,17 +479,18 @@
     max-width: 420px;
     margin: 0 auto;
     box-shadow: 0 15px 40px var(--shadow);
+    backdrop-filter: blur(6px);
     transition: background 0.5s, border 0.5s, box-shadow 0.5s;
   }
-  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(255,107,122,0.15); }
+  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.18); }
   .detail-item:last-child { border-bottom: none; }
-  .card-icon-svg { width: 28px; height: 28px; fill: var(--gold); transition: fill 0.5s; }
+  .card-icon-svg { width: 28px; height: 28px; fill: var(--gold-light); transition: fill 0.5s; }
   .detail-label { font-size: 0.75rem; color: var(--text-muted); transition: color 0.5s; }
   .detail-value { font-family: 'Amiri', serif; font-weight: bold; font-size: clamp(1.1rem, 4vw, 1.5rem); color: var(--text-main); transition: color 0.5s; }
 
   /* ======= SCRATCH TO REVEAL ======= */
-  .scratch-section { padding: 80px 24px; text-align: center; background: var(--bg-main); transition: background 0.5s; }
-  .scratch-title { font-family: 'Scheherazade New', serif; font-size: clamp(1.4rem, 5vw, 2rem); color: var(--gold-light); margin-bottom: 30px; transition: color 0.5s; }
+  .scratch-section { padding: 80px 24px; text-align: center; background: transparent; }
+  .scratch-title { font-family: 'Scheherazade New', serif; font-size: clamp(1.4rem, 5vw, 2rem); color: var(--text-main); margin-bottom: 30px; text-shadow: 0 2px 10px rgba(90,15,28,0.4); transition: color 0.5s; }
    
   .scratch-canvas-wrap {
     position: relative;
@@ -490,7 +519,7 @@
     z-index: 1;
     padding: 40px 25px;
     border: 2px solid var(--heart-border);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: inset 0 0 25px rgba(255,255,255,0.15);
     transition: background 0.8s ease, color 0.5s, border-color 0.5s;
   }
 
@@ -501,12 +530,12 @@
 
   #scratch-reveal.revealed p {
     font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    text-shadow: 0 1px 3px rgba(255,255,255,0.35);
   }
 
   #scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; cursor: crosshair; touch-action: none; }
 
-  /* ======= GUEST GUIDELINES SECTION ======= */
+  /* ======= GUEST GUIDELINES ======= */
   .guidelines-section {
     padding: 60px 24px;
     max-width: 500px;
@@ -515,12 +544,13 @@
   }
 
   .guidelines-card {
-    background: linear-gradient(135deg, var(--bg-card), rgba(255,107,122,0.06));
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 30px 20px;
+    padding: 26px 18px;
     margin-top: 30px;
     box-shadow: 0 10px 30px var(--shadow);
+    backdrop-filter: blur(6px);
     transition: all 0.5s;
   }
 
@@ -530,15 +560,15 @@
     gap: 15px;
     padding: 18px;
     margin: 12px 0;
-    background: linear-gradient(90deg, rgba(255,107,122,0.08), transparent);
-    border-right: 3px solid var(--gold);
-    border-radius: 8px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.16), transparent);
+    border-right: 3px solid var(--gold-light);
+    border-radius: 10px;
     text-align: right;
     transition: all 0.3s;
   }
 
   .guideline-item:hover {
-    background: linear-gradient(90deg, rgba(255,107,122,0.15), transparent);
+    background: linear-gradient(90deg, rgba(255,255,255,0.28), transparent);
     transform: translateX(-5px);
   }
 
@@ -548,43 +578,47 @@
   }
 
   .guideline-text {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
+    font-weight: bold;
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   footer { padding: 60px 24px 40px; text-align: center; border-top: 1px solid var(--border-color); transition: border 0.5s; }
-  .footer-dua { font-family: 'Scheherazade New', serif; font-size: clamp(1rem, 4vw, 1.4rem); color: var(--text-muted); line-height: 2; transition: color 0.5s; }
-  .footer-heart-svg { display: block; margin: 20px auto; width: 30px; height: 30px; fill: var(--gold); transition: fill 0.5s; }
+  .footer-dua { font-family: 'Scheherazade New', serif; font-size: clamp(1.05rem, 4vw, 1.45rem); color: var(--text-main); line-height: 2; text-shadow: 0 2px 8px rgba(90,15,28,0.3); transition: color 0.5s; }
+  .footer-heart-svg { display: block; margin: 20px auto; width: 30px; height: 30px; fill: var(--gold-light); filter: drop-shadow(0 0 8px rgba(255,255,255,0.45)); transition: fill 0.5s; }
 
   /* ======= SCROLL HINT ======= */
   .scroll-hint {
     position: absolute;
-    bottom: 20px; 
+    bottom: 0; 
     left: 50%;
     transform: translateX(-50%);
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     gap: 12px;
-    opacity: 0.95; 
+    opacity: 1; 
     animation: bounce 2s infinite;
-    padding: 20px;
-    background: linear-gradient(to bottom, transparent, rgba(230,57,70,0.15), rgba(61,17,17,0.95));
-    border-radius: 12px;
+    padding: 26px 40px 18px;
+    background: var(--scroll-hint-bg);
+    border-radius: 16px 16px 0 0;
+    backdrop-filter: blur(4px);
   }
   .scroll-hint span { 
-    font-size: 1.1rem; 
+    font-size: 1.15rem; 
     font-weight: bold;
     color: var(--gold-light); 
     transition: color 0.5s;
-    text-shadow: 0 0 10px rgba(255,107,122,0.6);
+    text-shadow: 0 0 14px rgba(255,255,255,0.65);
+    letter-spacing: 0.05em;
   }
   .scroll-hint-arrow { 
     width: 3px; 
-    height: 50px; 
+    height: 55px; 
     background: linear-gradient(to bottom, var(--gold-light), transparent); 
     border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
   }
   @keyframes bounce { 
     0%, 100% { transform: translateX(-50%) translateY(0); } 
@@ -627,8 +661,8 @@
     background: var(--rose);
     border-radius: 50% 0 50% 50%;
     transform: rotate(-45deg);
-    opacity: 0.7;
-    box-shadow: 0 2px 4px rgba(255,107,122,0.3);
+    opacity: 0.75;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.35);
   }
 
   @keyframes fallPetal {
@@ -637,7 +671,7 @@
       opacity: 0;
     }
     10% {
-      opacity: 0.7;
+      opacity: 0.75;
     }
     100% {
       transform: translateY(110vh) translateX(100px) rotate(720deg);
@@ -666,7 +700,8 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+    opacity: 0.8;
   }
 
   .program-item {
@@ -682,17 +717,18 @@
     top: 28px;
     width: 12px;
     height: 12px;
-    background: var(--gold);
-    border: 2px solid var(--bg-main);
+    background: var(--gold-light);
+    border: 2px solid var(--bg-solid);
     border-radius: 50%;
-    box-shadow: 0 0 0 3px var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-light), 0 0 12px rgba(255,255,255,0.5);
   }
 
   .program-time {
     font-family: 'Scheherazade New', serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--gold-light);
     font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,255,255,0.4);
   }
 
   .program-event {
@@ -704,7 +740,7 @@
 </head>
 <body>
 
-<audio id="bg-music" src="aaa.mp3" loop preload="auto"></audio>
+<audio id="bg-music" src="aaa.m4a" loop preload="auto"></audio>
 
 <div class="top-controls">
   <div class="control-btn" id="theme-control" onclick="toggleTheme()" title="تغيير المظهر">
@@ -893,7 +929,7 @@
     <div class="guidelines-card">
       <div class="guideline-item">
         <span class="guideline-icon">🚫</span>
-        <span class="guideline-text">ممنوع اصطحاب الأطفال الأكبر من 7 سنوات</span>
+        <span class="guideline-text">ممنوع اصطحاب الأطفال الذكور الأكبر من 7 سنوات</span>
       </div>
       <div class="guideline-item">
         <span class="guideline-icon">⏰</span>
@@ -1063,12 +1099,12 @@
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#a64563'; 
     } else {
-      grad.addColorStop(0, '#ff6b7a'); 
-      grad.addColorStop(0.5, '#5a1e1e'); 
-      grad.addColorStop(1, '#7a2a2a');
+      grad.addColorStop(0, '#ffe4e8'); 
+      grad.addColorStop(0.5, '#f5b8c2'); 
+      grad.addColorStop(1, '#ffffff');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#ffffff'; 
+      ctx.fillStyle = '#8f1f2e'; 
     }
 
     ctx.font = 'bold 17px Amiri, serif';
@@ -1140,7 +1176,7 @@
       const isPink = document.documentElement.getAttribute('data-theme') === 'pink';
       const colors = isPink 
         ? ['#b76e79', '#e8b4bc', '#a64563', '#ffd4e0', '#c97b8b', '#8b6577']
-        : ['#ff6b7a', '#ffffff', '#e63946', '#ff8fa0', '#ffe4e4', '#7a2a2a'];
+        : ['#ffffff', '#ffd6dc', '#ff8fa0', '#a8283a', '#ffe4e8', '#f2a3b3'];
       const totalParticles = 120;
 
       for (let i = 0; i < totalParticles; i++) {
