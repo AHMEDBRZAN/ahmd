@@ -3,52 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعوة زفاف - أحمد برزان</title>
+<title>دعوة خطوبة - أحمد برزان</title>
 <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ======= الـوضـع الـفـاتـح الـمـلـكـي (الافتراضي) ======= */
+  /* ======= الـوضـع الـفـاتـح الـرّومانسي (الافتراضي) ======= */
   :root {
-    --gold: #b38f36;
-    --gold-light: #8b6914;
-    --gold-dark: #684f10;
-    --crimson: #8c1d33; 
-    --bg-main: #fbf8f0;
-    --bg-card: linear-gradient(160deg, #ffffff, #f3edd8);
-    --bg-gate: linear-gradient(135deg, #ffffff 0%, #f3edd8 50%, #ffffff 100%);
-    --text-main: #33291e;
-    --text-muted: #665541;
-    --border-color: rgba(179,143,54,0.25);
-    --shadow: rgba(51,41,30,0.08);
-    --shadow-scratch: 0 20px 40px rgba(140, 29, 51, 0.12);
+    --gold: #c9a961;
+    --gold-light: #a88a4a;
+    --gold-dark: #8a6f30;
+    --crimson: #b85c78; 
+    --bg-main: #fdf9f3;
+    --bg-card: linear-gradient(160deg, #ffffff, #fef5e7);
+    --bg-gate: linear-gradient(135deg, #ffffff 0%, #fef5e7 50%, #ffffff 100%);
+    --text-main: #3d2e22;
+    --text-muted: #7a6551;
+    --border-color: rgba(201,169,97,0.25);
+    --shadow: rgba(61,46,34,0.08);
+    --shadow-scratch: 0 20px 40px rgba(184, 92, 120, 0.12);
     
-    /* خلفية مخملية وردية عاجية دافئة تبرز شكل القلب تماماً */
-    --heart-reveal-bg: linear-gradient(145deg, #fffcf7, #f5e6e8, #ebd0d4);
-    --heart-border: #b38f36;
-    --heart-text: #8c1d33;
+    --heart-reveal-bg: linear-gradient(145deg, #fff5f7, #fce4ec, #f8d7da);
+    --heart-border: #c9a961;
+    --heart-text: #b85c78;
+    
+    /* ألوان الخطوبة الرومانسية */
+    --rose: #e8b4bc;
+    --rose-light: #fce4ec;
+    --peach: #f8d7da;
   }
 
   /* ======= الـوضـع الـدّاكِـن الـفـاخـر ======= */
   [data-theme="dark"] {
-    --gold: #d4af37;
-    --gold-light: #f3edd8;
-    --gold-dark: #a37f26;
-    --crimson: #d4af37; 
-    --bg-main: #120e0a;
-    --bg-card: linear-gradient(160deg, #1c1610, #0d0a07);
-    --bg-gate: linear-gradient(135deg, #1c1610 0%, #0d0a07 50%, #1c1610 100%);
-    --text-main: #f5ebd7;
-    --text-muted: #baa58b;
-    --border-color: rgba(179,143,54,0.35);
+    --gold: #e0c890;
+    --gold-light: #fef5e7;
+    --gold-dark: #b89560;
+    --crimson: #e8b4bc; 
+    --bg-main: #1a1410;
+    --bg-card: linear-gradient(160deg, #261c14, #120d09);
+    --bg-gate: linear-gradient(135deg, #261c14 0%, #120d09 50%, #261c14 100%);
+    --text-main: #f8f0e3;
+    --text-muted: #c4ad91;
+    --border-color: rgba(201,169,97,0.35);
     --shadow: rgba(0,0,0,0.5);
     --shadow-scratch: 0 20px 45px rgba(0, 0, 0, 0.6);
     
-    /* خلفية عنابية خمرية عميقة وساحرة تمنح تباين فخم جداً */
-    --heart-reveal-bg: linear-gradient(145deg, #2a0810, #42101a, #1a0308);
-    --heart-border: #d4af37;
-    --heart-text: #f5ebd7;
+    --heart-reveal-bg: linear-gradient(145deg, #2a0f18, #3d1522, #1f0a12);
+    --heart-border: #e0c890;
+    --heart-text: #f8f0e3;
+    
+    --rose: #c97b8b;
+    --rose-light: #3d1522;
+    --peach: #2a0f18;
   }
 
   html { scroll-behavior: smooth; }
@@ -61,7 +68,7 @@
     transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* ======= CONTROLS (AUDIO & THEME) ======= */
+  /* ======= CONTROLS ======= */
   .top-controls {
     position: fixed;
     top: 20px;
@@ -86,7 +93,7 @@
   }
   .control-btn:hover {
     transform: scale(1.08);
-    box-shadow: 0 0 14px rgba(179,143,54,0.5);
+    box-shadow: 0 0 14px rgba(201,169,97,0.5);
   }
   .control-btn svg {
     width: 22px;
@@ -126,8 +133,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(179,143,54,0.03) 40px, rgba(179,143,54,0.03) 41px),
-      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(179,143,54,0.03) 40px, rgba(179,143,54,0.03) 41px);
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,169,97,0.03) 40px, rgba(201,169,97,0.03) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,169,97,0.03) 40px, rgba(201,169,97,0.03) 41px);
   }
 
   .gate-arch {
@@ -168,7 +175,7 @@
     border-radius: 50%;
     background: var(--bg-card);
     border: 2px solid var(--gold);
-    box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(179,143,54,0.1);
+    box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(201,169,97,0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,8 +186,8 @@
     padding: 10px;
   }
   @keyframes sealPulse {
-    0%, 100% { box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(179,143,54,0.1); }
-    50% { box-shadow: 0 6px 30px var(--shadow), 0 0 0 10px rgba(179,143,54,0.05); }
+    0%, 100% { box-shadow: 0 4px 20px var(--shadow), 0 0 0 6px rgba(201,169,97,0.1); }
+    50% { box-shadow: 0 6px 30px var(--shadow), 0 0 0 10px rgba(201,169,97,0.05); }
   }
 
   .seal-text {
@@ -218,8 +225,8 @@
     position: absolute;
     inset: 0;
     background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(179,143,54,0.02) 60px, rgba(179,143,54,0.02) 1px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(179,143,54,0.02) 60px, rgba(179,143,54,0.02) 1px);
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,169,97,0.02) 60px, rgba(201,169,97,0.02) 1px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,169,97,0.02) 60px, rgba(201,169,97,0.02) 1px);
   }
 
   .frame {
@@ -318,6 +325,33 @@
     transition: color 0.5s;
   }
 
+  /* ======= QUOTE SECTION (جديد) ======= */
+  .quote-section {
+    text-align: center;
+    padding: 30px 24px 10px;
+    max-width: 500px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeInUp 1.2s 0.5s forwards;
+  }
+
+  .quote-text {
+    font-family: 'Scheherazade New', serif;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    color: var(--crimson);
+    line-height: 2;
+    font-style: italic;
+    transition: color 0.5s;
+  }
+
+  .quote-source {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+    transition: color 0.5s;
+  }
+
   /* ======= SECTIONS ======= */
   section {
     padding: 60px 24px;
@@ -341,7 +375,7 @@
     transition: color 0.5s;
   }
 
-  /* ======= AUTOMATIC SLIDER ======= */
+  /* ======= SLIDER ======= */
   .photos-slider-container {
     max-width: 440px;
     margin: 20px auto 0 auto;
@@ -369,7 +403,7 @@
   .slide-img.active { opacity: 1; }
 
   .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(179,143,54,0.2); transition: all 0.3s; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(201,169,97,0.2); transition: all 0.3s; }
   .dot.active { background-color: var(--crimson); transform: scale(1.2); }
 
   /* ======= COUNTDOWN ======= */
@@ -378,7 +412,21 @@
     padding: 30px 24px 80px 24px;
     text-align: center;
     transition: background 0.5s;
+    position: relative;
   }
+  
+  .countdown-wrapper {
+    position: relative;
+    padding: 40px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    max-width: 420px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    box-shadow: 0 10px 30px var(--shadow);
+    transition: all 0.5s;
+  }
+
   .countdown-label {
     font-family: 'Scheherazade New', serif;
     font-size: clamp(1.4rem, 5vw, 2.2rem);
@@ -410,7 +458,7 @@
     box-shadow: 0 15px 40px var(--shadow);
     transition: background 0.5s, border 0.5s, box-shadow 0.5s;
   }
-  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(179,143,54,0.1); }
+  .detail-item { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; border-bottom: 1px solid rgba(201,169,97,0.1); }
   .detail-item:last-child { border-bottom: none; }
   .card-icon-svg { width: 28px; height: 28px; fill: var(--gold); transition: fill 0.5s; }
   .detail-label { font-size: 0.75rem; color: var(--text-muted); transition: color 0.5s; }
@@ -432,7 +480,6 @@
     -webkit-clip-path: url(#heart-clip);
   }
   
-  /* الحاوية الأساسية للقلب - تم إضافة حدود واضحة وتأثير ظل داخلي فخم يمنحه بروزاً هائلاً */
   #scratch-reveal {
     position: absolute;
     inset: 0;
@@ -447,12 +494,11 @@
     line-height: 1.8;
     z-index: 1;
     padding-bottom: 25px; 
-    border: 2px solid var(--heart-border); /* برواز ذهبي صريح ومصقول حول القلب */
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.15); /* ظل داخلي ليعطي عمق للقلب */
+    border: 2px solid var(--heart-border);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
     transition: background 0.8s ease, color 0.5s, border-color 0.5s;
   }
 
-  /* الاستايل الجديد للقلب بعد المسح - مظهر مخملي ناعم وتباين ممتاز جداً */
   #scratch-reveal.revealed {
     background: var(--heart-reveal-bg) !important;
     color: var(--heart-text) !important;
@@ -460,17 +506,16 @@
 
   #scratch-reveal.revealed p {
     font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.05); /* إضفاء لمسة جمالية مقروءة على النص */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
 
-  /* تأثير النبض البصري الأنيق لقلوب الزينة الداخلية */
   #scratch-reveal.revealed .revealed-heart {
     fill: var(--heart-border) !important;
     animation: heartPulseGlow 1.8s infinite alternate ease-in-out;
   }
 
   @keyframes heartPulseGlow {
-    0% { transform: scale(1); filter: drop-shadow(0 0 1px rgba(179,143,54,0.1)); }
+    0% { transform: scale(1); filter: drop-shadow(0 0 1px rgba(201,169,97,0.1)); }
     100% { transform: scale(1.15); filter: drop-shadow(0 0 6px var(--gold)); }
   }
 
@@ -495,6 +540,111 @@
    
   .confetti-particle { position: fixed; z-index: 9999; pointer-events: none; top: -20px; will-change: transform, opacity; animation: smoothFall linear forwards; }
   @keyframes smoothFall { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(105vh) translateX(30px) rotate(360deg); opacity: 0; } }
+
+  /* ======= SCROLL ANIMATIONS (جديد) ======= */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ======= FLOATING PETALS (جديد - ورود متساقطة) ======= */
+  .petal {
+    position: fixed;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .petal-shape {
+    width: 16px;
+    height: 16px;
+    background: var(--rose);
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(-45deg);
+    opacity: 0.7;
+    box-shadow: 0 2px 4px rgba(184, 92, 120, 0.2);
+  }
+
+  @keyframes fallPetal {
+    0% {
+      transform: translateY(-10vh) translateX(0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(110vh) translateX(100px) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  /* ======= PROGRAM SECTION (جديد - برنامج الحفل) ======= */
+  .program-section {
+    padding: 60px 24px;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .program-timeline {
+    margin-top: 30px;
+    position: relative;
+    padding-right: 30px;
+  }
+
+  .program-timeline::before {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  }
+
+  .program-item {
+    position: relative;
+    padding: 20px 30px 20px 0;
+    text-align: right;
+  }
+
+  .program-item::before {
+    content: '';
+    position: absolute;
+    right: -28px;
+    top: 28px;
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border: 2px solid var(--bg-main);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--gold);
+  }
+
+  .program-time {
+    font-family: 'Scheherazade New', serif;
+    font-size: 1.2rem;
+    color: var(--crimson);
+    font-weight: bold;
+  }
+
+  .program-event {
+    font-size: 1rem;
+    color: var(--text-main);
+    margin-top: 4px;
+  }
 </style>
 </head>
 <body>
@@ -566,13 +716,13 @@
       <div class="divider-line rev"></div>
     </div>
 
-    <p class="welcome-text">يُشرِّفنا أن ندعوكم لحضور<br>حفل زفاف</p>
+    <p class="welcome-text">يُشرِّفنا أن ندعوكم لحضور<br>حفل خطوبة</p>
 
     <div class="groom-name">أحمد برزان</div>
-    <svg class="amp-svg" viewBox="0 0 24 24"><use href="#icon-diamond"/></svg>
+    <svg class="amp-svg" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
     <div class="bride-name">العروس</div>
 
-    <p class="honour-text">نطلب شرف حضوركم الكريم</p>
+    <p class="honour-text">نتشرف بدعوتكم لمشاركتنا فرحة الخطوبة</p>
 
     <div class="divider" style="margin-top: 30px;">
       <div class="divider-line"></div>
@@ -586,19 +736,26 @@
     </div>
   </div>
 
-  <section>
+  <div class="quote-section fade-in">
+    <p class="quote-text">"ومن آياته أن خلق لكم من أنفسكم أزواجاً لتسكنوا إليها وجعل بينكم مودة ورحمة"</p>
+    <p class="quote-source">— سورة الروم، الآية 21</p>
+  </div>
+
+  <div class="sep"></div>
+
+  <section class="fade-in">
     <p class="section-title">أهلاً وسهلاً</p>
     <div class="divider"><div class="divider-line"></div><div class="divider-gem">❖</div><div class="divider-line rev"></div></div>
     <p class="section-body">
       يسعدنا أن نشارككم فرحتنا في هذه المناسبة السعيدة،<br>
-      ونحن إذ نبدأ رحلتنا الجديدة بالإيمان والمحبة،<br>
+      ونحن نعلن بداية قصة حبنا،<br>
       نشكركم على تشريفكم لهذه المناسبة المباركة ❤️
     </p>
   </section>
 
   <div class="sep"></div>
 
-  <div class="photos-slider-container">
+  <div class="photos-slider-container fade-in">
     <div class="slider-wrapper">
       <img src="as1.jpeg" class="slide-img active">
       <img src="as2.jpeg" class="slide-img">
@@ -615,19 +772,21 @@
     </div>
   </div>
 
-  <div class="countdown-section">
-    <p class="countdown-label" id="countdown-title">العدّ التنازلي حتى الفرح</p>
-    <div class="countdown-grid" id="countdown-board">
-      <div class="countdown-box"><span class="countdown-num" id="days">00</span><span class="countdown-unit">يوم</span></div>
-      <div class="countdown-box"><span class="countdown-num" id="hours">00</span><span class="countdown-unit">ساعة</span></div>
-      <div class="countdown-box"><span class="countdown-num" id="minutes">00</span><span class="countdown-unit">دقيقة</span></div>
-      <div class="countdown-box"><span class="countdown-num" id="seconds">00</span><span class="countdown-unit">ثانية</span></div>
+  <div class="countdown-section fade-in">
+    <div class="countdown-wrapper">
+      <p class="countdown-label" id="countdown-title">العدّ التنازلي حتى الخطوبة</p>
+      <div class="countdown-grid" id="countdown-board">
+        <div class="countdown-box"><span class="countdown-num" id="days">00</span><span class="countdown-unit">يوم</span></div>
+        <div class="countdown-box"><span class="countdown-num" id="hours">00</span><span class="countdown-unit">ساعة</span></div>
+        <div class="countdown-box"><span class="countdown-num" id="minutes">00</span><span class="countdown-unit">دقيقة</span></div>
+        <div class="countdown-box"><span class="countdown-num" id="seconds">00</span><span class="countdown-unit">ثانية</span></div>
+      </div>
     </div>
   </div>
 
   <div class="sep"></div>
 
-  <section>
+  <section class="fade-in">
     <p class="section-title">تفاصيل الحفل</p>
     <div class="divider"><div class="divider-line"></div><div class="divider-gem">❖</div><div class="divider-line rev"></div></div>
 
@@ -640,26 +799,48 @@
       <div class="detail-item">
         <svg class="card-icon-svg" viewBox="0 0 24 24"><use href="#icon-time"/></svg>
         <span class="detail-label">التوقيت</span>
-        <span class="detail-value">08:00 مساءً</span>
+        <span class="detail-value">07:00 مساءً</span>
       </div>
       <div class="detail-item">
         <svg class="card-icon-svg" viewBox="0 0 24 24"><use href="#icon-location"/></svg>
         <span class="detail-label">المكان</span>
-        <span class="detail-value">الناصرية</span>
+        <span class="detail-value">الناصرية / قاعة سومريون</span>
       </div>
     </div>
   </section>
 
   <div class="sep"></div>
 
-  <div class="scratch-section">
+  <div class="program-section fade-in">
+    <p class="section-title">برنامج الحفل</p>
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem">❖</div><div class="divider-line rev"></div></div>
+
+    <div class="program-timeline">
+      <div class="program-item">
+        <span class="program-time">07:00 م</span>
+        <p class="program-event">استقبال الضيوف الكرام</p>
+      </div>
+      <div class="program-item">
+        <span class="program-time">08:00 م</span>
+        <p class="program-event">قراءة الفاتحة ومباركة الخطوبة</p>
+      </div>
+      <div class="program-item">
+        <span class="program-time">08:30 م</span>
+        <p class="program-event">العشاء والاحتفال</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="scratch-section fade-in">
     <p class="scratch-title" id="scratch-header">✦ امسح للكشف ✦</p>
     <div class="scratch-canvas-wrap">
       <div id="scratch-reveal">
         <svg class="revealed-heart" style="width:24px; height:24px; fill:var(--gold); margin-bottom:8px; transition: all 0.3s;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
-        <p>بارك الله لكما</p>
-        <p>وبارك عليكما</p>
-        <p>وجمع بينكما في خير</p>
+        <p>بارك الله هذه الخطوبة</p>
+        <p>وكتب لكما السعادة</p>
+        <p>وأدام المحبة بينكما</p>
         <svg class="revealed-heart" style="width:24px; height:24px; fill:var(--gold); margin-top:8px; transition: all 0.3s;" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
       </div>
       <canvas id="scratch-canvas"></canvas>
@@ -669,7 +850,7 @@
   <div class="sep"></div>
 
   <footer>
-    <p class="footer-dua">اللهم بارك لهما وبارك عليهما<br>واجمع شملهما بالسعادة والهناء</p>
+    <p class="footer-dua">اللهم بارك هذه الخطوبة<br>واجعلها بداية حياة سعيدة مليئة بالحب والهناء</p>
     <svg class="footer-heart-svg" viewBox="0 0 24 24"><use href="#icon-heart"/></svg>
     <div class="divider"><div class="divider-line"></div><div class="divider-gem">❖</div><div class="divider-line rev"></div></div>
     <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 20px; letter-spacing: 0.1em;">أحمد برزان — ٢٠٢٦ م</p>
@@ -718,7 +899,9 @@
 
     setTimeout(() => gate.classList.add('gone'), 1500);
     initScratch();
-    startImagesSlider(); 
+    startImagesSlider();
+    initScrollAnimations();
+    startFloatingPetals();
   }
 
   function toggleMusic() {
@@ -733,7 +916,24 @@
     }
   }
 
-  const weddingDate = new Date("December 4, 2026 20:00:00"); 
+  // إيقاف الموسيقى عند الخروج من المتصفح أو التبويب
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && !music.paused) {
+      music.pause();
+      iconOn.style.display = 'none';
+      iconOff.style.display = 'block';
+    }
+  });
+
+  window.addEventListener('blur', () => {
+    if (!music.paused) {
+      music.pause();
+      iconOn.style.display = 'none';
+      iconOff.style.display = 'block';
+    }
+  });
+
+  const weddingDate = new Date("October 8, 2026 19:00:00"); 
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById('event-date').textContent = weddingDate.toLocaleDateString('ar-EG', options);
 
@@ -742,7 +942,7 @@
     const diff = weddingDate - now;
 
     if (diff <= 0) {
-      document.getElementById('countdown-title').textContent = "💥 حان وقت الفرح والمسرات! 💥";
+      document.getElementById('countdown-title').textContent = "💥 حان وقت الاحتفال بخطوبتنا! 💥";
       document.getElementById('countdown-board').style.display = 'none';
       return;
     }
@@ -789,19 +989,19 @@
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
     if (isDark) {
-      grad.addColorStop(0, '#8a6914'); 
+      grad.addColorStop(0, '#b89560'); 
       grad.addColorStop(0.5, '#2d2216'); 
       grad.addColorStop(1, '#4a3b2c');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#f5ebd7'; 
+      ctx.fillStyle = '#f8f0e3'; 
     } else {
-      grad.addColorStop(0, '#d4af37'); 
-      grad.addColorStop(0.5, '#fbf8f0'); 
-      grad.addColorStop(1, '#b38f36');
+      grad.addColorStop(0, '#e0c890'); 
+      grad.addColorStop(0.5, '#fdf9f3'); 
+      grad.addColorStop(1, '#c9a961');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#8c1d33'; 
+      ctx.fillStyle = '#b85c78'; 
     }
 
     ctx.font = 'bold 17px Amiri, serif';
@@ -852,7 +1052,7 @@
 
           setTimeout(() => {
             canvas.style.display = 'none';
-            header.textContent = "✦ بداية رحلتنا الأبدية ✦";
+            header.textContent = "✦ بداية قصة حبنا ✦";
             triggerOptimizedCelebration();
           }, 400);
         }
@@ -870,7 +1070,7 @@
     }
 
     function triggerOptimizedCelebration() {
-      const colors = ['#b38f36', '#8c1d33', '#540e1c', '#665541', '#d4af37'];
+      const colors = ['#c9a961', '#b85c78', '#e8b4bc', '#f8d7da', '#e0c890', '#7a6551'];
       const totalParticles = 120;
 
       for (let i = 0; i < totalParticles; i++) {
@@ -897,6 +1097,54 @@
     canvas.addEventListener('touchstart', e => { painting = true; scratch(e); }, { passive: false });
     canvas.addEventListener('touchmove', scratch, { passive: false });
     canvas.addEventListener('touchend', () => painting = false);
+  }
+
+  // تأثيرات التمرير (Scroll Animations)
+  function initScrollAnimations() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeElements.forEach(el => observer.observe(el));
+  }
+
+  // ورود متساقطة (Floating Petals)
+  function startFloatingPetals() {
+    function createPetal() {
+      if (document.hidden) return;
+      
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      
+      const shape = document.createElement('div');
+      shape.classList.add('petal-shape');
+      petal.appendChild(shape);
+      
+      const startX = Math.random() * 100;
+      petal.style.left = startX + 'vw';
+      
+      const duration = Math.random() * 5 + 8;
+      petal.style.animation = `fallPetal ${duration}s linear forwards`;
+      
+      const size = Math.random() * 8 + 12;
+      shape.style.width = size + 'px';
+      shape.style.height = size + 'px';
+      
+      const hue = Math.random() * 20 - 10;
+      shape.style.filter = `hue-rotate(${hue}deg)`;
+      
+      document.body.appendChild(petal);
+      
+      setTimeout(() => petal.remove(), duration * 1000);
+    }
+
+    setInterval(createPetal, 800);
   }
 </script>
 </body>
