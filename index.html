@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعوة خطوبة - أحمد  </title>
+<title>دعوة خطوبة - أحمد و أديان</title>
 <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
@@ -419,14 +419,14 @@
     transition: color 0.5s;
   }
 
-  /* ======= أسماء العرسان — لمعان الرقائق المعدنية ======= */
+  /* ======= أسماء العرسان — حجم طبيعي أنيق أكبر قليلاً من الباقي ======= */
   .groom-name, .bride-name {
     position: relative;
     z-index: 2;
     font-family: 'Scheherazade New', serif;
     font-weight: 700;
     text-align: center;
-    line-height: 1.15;
+    line-height: 1.25;
     letter-spacing: 0.02em;
     background: var(--name-sheen);
     background-size: 300% 100%;
@@ -436,8 +436,8 @@
     filter: var(--names-drop);
     animation: foilSheen 7s ease-in-out infinite;
   }
-  .groom-name { font-size: clamp(3.2rem, 13vw, 5.5rem); }
-  .bride-name { font-size: clamp(2.8rem, 11vw, 4.5rem); }
+  .groom-name { font-size: clamp(2.5rem, 9.5vw, 3.8rem); }
+  .bride-name { font-size: clamp(2.2rem, 8.5vw, 3.3rem); }
   @keyframes foilSheen {
     0%   { background-position: 190% 0; }
     55%  { background-position: -90% 0; }
@@ -448,9 +448,9 @@
     position: relative;
     z-index: 2;
     display: block;
-    margin: 12px auto;
-    width: 30px;
-    height: 30px;
+    margin: 10px auto;
+    width: 26px;
+    height: 26px;
     fill: var(--gold-light);
     filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
     animation: heartBeat 2.6s ease-in-out infinite;
@@ -517,7 +517,7 @@
     transition: color 0.5s;
   }
 
-  /* ======= SLIDER ======= */
+  /* ======= SLIDER — صور تنقلب بتأثير ثلاثي الأبعاد ======= */
   .photos-slider-container {
     max-width: 440px;
     margin: 20px auto 0 auto;
@@ -534,6 +534,7 @@
     overflow: hidden;
     box-shadow: var(--card-shadow);
     transition: box-shadow 0.4s, transform 0.4s;
+    perspective: 1400px;
   }
   .slide-img {
     position: absolute;
@@ -541,11 +542,24 @@
     width: 100%; height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.8s ease-in-out;
+    transform: rotateY(-90deg) scale(0.94);
+    transform-origin: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: opacity 0.35s ease, transform 0.5s ease;
   }
-  .slide-img.active { opacity: 1; }
+  .slide-img.active {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+    animation: flipIn 0.95s cubic-bezier(0.35, 0.1, 0.25, 1);
+  }
+  @keyframes flipIn {
+    0%   { opacity: 0; transform: rotateY(88deg) scale(0.92); filter: brightness(1.35); }
+    60%  { opacity: 1; filter: brightness(1.1); }
+    100% { opacity: 1; transform: rotateY(0deg) scale(1); filter: brightness(1); }
+  }
 
-  .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+  .slider-dots { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
   .dot { width: 7px; height: 7px; border-radius: 50%; background-color: rgba(255,255,255,0.35); transition: all 0.3s; }
   .dot.active { background-color: var(--gold-light); transform: scale(1.3); box-shadow: 0 0 8px rgba(255,255,255,0.6); }
 
@@ -989,9 +1003,15 @@
       <img src="as3.jpeg" class="slide-img">
       <img src="as4.jpeg" class="slide-img">
       <img src="as5.jpeg" class="slide-img">
+      <img src="as6.jpeg" class="slide-img">
+      <img src="as7.jpeg" class="slide-img">
+      <img src="as8.jpeg" class="slide-img">
     </div>
     <div class="slider-dots">
       <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
       <div class="dot"></div>
@@ -1227,7 +1247,7 @@
       currentIndex = (currentIndex + 1) % slides.length;
       slides[currentIndex].classList.add('active');
       dots[currentIndex].classList.add('active');
-    }, 3000);
+    }, 3200);
   }
 
   let globalPaintingState = { isCelebrated: false, timerStarted: false };
